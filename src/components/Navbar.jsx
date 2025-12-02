@@ -20,7 +20,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a href="#" className="text-xl">VISA NAVIGATOR</a>
+                <a href="#" className="text-xl md:text-2xl lg:text-3xl">VISA NAVIGATOR</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -28,7 +28,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <a className="btn">Login</a>
+                <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Register</button>
+                <img src="" alt="" srcset="" />
+                <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Logout</button>
             </div>
         </div>
     );
