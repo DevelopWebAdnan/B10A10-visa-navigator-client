@@ -5,25 +5,45 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import HomeLayout from './layouts/HomeLayout';
+import MainLayout from './layouts/MainLayout';
 import AllVisas from './pages/AllVisas';
 import Login from './pages/Login';
 import ErrorPage from './pages/ErrorPage';
+import Register from './pages/Register';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomeLayout></HomeLayout>,
-    errorElement: <ErrorPage></ErrorPage>
+    element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: "login",
+        element: <Login></Login>
+      },
+      {
+        path: "register",
+        element: <Register></Register>
+      }
+    ]
   },
   {
     path: "allVisas",
     element: <AllVisas></AllVisas>
   },
-  {
-    path: "login",
-    element: <Login></Login>
-  }
+  // {
+  //   path: "login",
+  //   element: <Login></Login>
+  // },
+  // {
+  //   path: "register",
+  //   element: <Register></Register>
+  // }
 ]);
 
 createRoot(document.getElementById('root')).render(
