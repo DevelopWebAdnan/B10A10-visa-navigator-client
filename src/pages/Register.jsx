@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Register = () => {
 
     const handleRegister = (event) => {
@@ -6,13 +8,13 @@ const Register = () => {
         const photo = event.target.photo.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        
+
         console.log(name, photo, email, password);
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
-            <div className='hero-content flex-col lg:flex-row-reverse'>
-                <h2 className='text-5xl font-bold'>Register</h2>
+            <div className='hero-content flex-col'>
+                <h2 className='text-2xl font-bold'>Register</h2>
                 <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
                     <div className="card-body">
                         <form onSubmit={handleRegister} className='fieldset'>
@@ -46,7 +48,7 @@ const Register = () => {
                             {/* </fieldset> */}
 
                             {/* <fieldset className="fieldset mx-auto"> */}
-                            
+
                             {/* <fieldset className="fieldset mx-auto"> */}
                             <legend className="fieldset-legend">What is your password?</legend>
                             {/* <input type="email" className="input" placeholder="Email" /> */}
@@ -71,9 +73,9 @@ const Register = () => {
                                     name='password'
                                     required
                                     placeholder="Password"
-                                    // minLength="8"
-                                    // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                    // title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                                // minLength="8"
+                                // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                // title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                                 />
                             </label>
                             {/* </fieldset> */}
@@ -131,6 +133,10 @@ const Register = () => {
                 </fieldset> */}
 
                             <input type="submit" value="Submit" className="btn" />
+
+                            <p className="m-4">
+                                Already have an account? Please <Link className="text-red-500" to="/login">Login</Link>
+                            </p>
 
                             {/* Google */}
                             <button className="btn bg-white text-black border-[#e5e5e5]">
