@@ -33,7 +33,7 @@ const Register = () => {
                         <form onSubmit={handleRegister} className='fieldset'>
                             {/* <fieldset className="fieldset border mx-auto"> */}
                             <legend className="fieldset-legend">What is your name?</legend>
-                            <input type="text" name='name' className="input" placeholder="Name" />
+                            <input type="text" name='name' className="input" required placeholder="Name" />
                             {/* <p className="label">Optional</p> */}
                             {/* </fieldset> */}
 

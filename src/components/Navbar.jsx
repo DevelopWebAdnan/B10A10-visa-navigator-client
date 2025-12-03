@@ -4,9 +4,17 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
 
-    const { name } = useContext(AuthContext);
+    const { user, signOutUser } = useContext(AuthContext);
 
-    console.log(name);
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                console.log('User sign out is successful.')
+            })
+            .catch(error => { console.log('ERROR', error.message) })
+    }
+
+    console.log(user);
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -34,10 +42,19 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="login"><button className="btn">Login</button></Link>
-                <Link to="register"><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Register</button></Link>
-                {/* <img src="" alt="" srcset="" /> */}
-                <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Logout {name}</button>
+                {
+                    user ?
+                        <>
+                            {/* <img src="" alt="" srcset="" /> */}
+                            <span>{user?.email}</span>
+                            <a onClick={handleSignOut} className="btn">Logout</a>
+                        </>
+                        :
+                        <>
+                            <Link to="login"><button className="btn">Login</button></Link>
+                            <Link to="register"><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Register</button></Link>
+                        </>
+                }
             </div>
         </div>
     );
