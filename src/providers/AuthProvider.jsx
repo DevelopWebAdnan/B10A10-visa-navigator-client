@@ -8,15 +8,20 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
 
+    const [loading, setLoading] = useState(true);
+
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const signInUser = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     const signOutUser = () => {
+        setLoading(true);
         return signOut(auth);
     }
 
@@ -25,6 +30,7 @@ const AuthProvider = ({ children }) => {
             // if(currentUser) {
                 console.log('Current user', currentUser);
                 setUser(currentUser);
+                setLoading(false);
             // }
 
             return () => {
@@ -35,8 +41,8 @@ const AuthProvider = ({ children }) => {
     }, [])
     
     const authInfo = {
-        name: 'nondo lal',
         user,
+        loading,
         createUser,
         signInUser,
         signOutUser

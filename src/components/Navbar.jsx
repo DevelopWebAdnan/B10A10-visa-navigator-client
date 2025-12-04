@@ -19,7 +19,13 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/allVisas">All Visas</NavLink></li>
-        {/* <li><NavLink to="/">Home</NavLink></li> */}
+        {
+            user && <>
+                <li><NavLink to="/addVisa">Add Visa</NavLink></li>
+                <li><NavLink to="/visaDetails">Visa Details</NavLink></li>
+                <li><NavLink to="/myAddedVisas">My Added Visas</NavLink></li>
+            </>
+        }
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">

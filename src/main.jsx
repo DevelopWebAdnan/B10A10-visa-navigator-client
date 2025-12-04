@@ -12,6 +12,11 @@ import ErrorPage from './pages/ErrorPage';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import AuthProvider from './providers/AuthProvider';
+import AddVisa from './pages/AddVisa';
+import PrivateRoute from './routes/PrivateRoute';
+import VisaDetails from './pages/VisaDetails';
+import MyAddedVisas from './pages/MyAddedVisas';
+import MyVisaApplications from './pages/myVisaApplications';
 
 const router = createBrowserRouter([
   {
@@ -30,21 +35,29 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>
+      },
+      {
+        path: "addVisa",
+        element: <PrivateRoute><AddVisa></AddVisa></PrivateRoute>
+      },
+      {
+        path: "allVisas",
+        element: <AllVisas></AllVisas>
+      },
+      {
+        path: "visaDetails",
+        element: <PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>
+      },
+      {
+        path: 'myAddedVisas',
+        element: <PrivateRoute><MyAddedVisas></MyAddedVisas></PrivateRoute>
+      },
+      {
+        path: 'myVisaApplications',
+        element: <PrivateRoute><MyVisaApplications></MyVisaApplications></PrivateRoute>
       }
     ]
   },
-  {
-    path: "allVisas",
-    element: <AllVisas></AllVisas>
-  },
-  // {
-  //   path: "login",
-  //   element: <Login></Login>
-  // },
-  // {
-  //   path: "register",
-  //   element: <Register></Register>
-  // }
 ]);
 
 createRoot(document.getElementById('root')).render(
