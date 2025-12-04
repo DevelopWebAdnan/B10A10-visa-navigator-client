@@ -50,11 +50,11 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <>
-                            {/* <img src="" alt="" srcset="" /> */}
-                            <span>{user?.email}</span>
+                        <div>
+                            <img src={user.photoURL} alt="user photo" title={user.displayName} />
+                            <small>(hover over the user photo to see the name of the user.)</small>
                             <a onClick={handleSignOut} className="btn">Logout</a>
-                        </>
+                        </div>
                         :
                         <>
                             <Link to="login"><button className="btn">Login</button></Link>
