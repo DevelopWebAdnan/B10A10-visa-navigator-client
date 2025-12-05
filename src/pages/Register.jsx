@@ -6,7 +6,7 @@ const Register = () => {
 
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
-    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -28,7 +28,7 @@ const Register = () => {
         const regex = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d@$!%*?&]{6,}$/;
 
         if (!regex.test(password)) {
-            setErrorMessage('Password must contain at least one Lowercase and at least one Uppercase letter');
+            setErrorMessage('Password must contain at least one Lowercase and at least one Uppercase letter; without a space or gap between 2 words');
             return;
         }
 
@@ -37,10 +37,18 @@ const Register = () => {
             .then(result => {
                 console.log(result.user);
                 event.target.reset();
-                navigate('/');
+                updateUserProfile({
+                    displayName: name,
+                    photoURL: photo
+                })
+                .then(() => {
+                    navigate('/');
+                })
+                .catch(error => {
+                    setErrorMessage(error.message);
+                })    
             })
             .catch(error => {
-                console.log('ERROR', error.message);
                 setErrorMessage(error.message);
             })
     }

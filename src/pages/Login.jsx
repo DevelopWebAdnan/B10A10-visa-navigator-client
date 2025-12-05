@@ -16,7 +16,7 @@ const Login = () => {
         const password = event.target.password.value;
 
         // reset error and status
-
+        setErrorMessage('');
 
         console.log(email, password);
         signInUser(email, password)
@@ -31,12 +31,15 @@ const Login = () => {
     }
 
     const handleGoogle = () => {
+        // reset error and status
+        setErrorMessage('');
+        
         signInWithGoogle()
             .then(result => {
                 console.log(result.user);
                 navigate('/');
             })
-            .catch(error => { console.log("ERROR", error.message) });
+            .catch(error => { setErrorMessage(error.message) });
     }
 
     return (

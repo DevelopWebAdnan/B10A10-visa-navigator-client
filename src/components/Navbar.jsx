@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import defaultUser from "../assets/user.png";
 
 const Navbar = () => {
 
+    console.log(import.meta.env.VITE_a);
     const { user, signOutUser } = useContext(AuthContext);
 
     const handleSignOut = () => {
@@ -51,12 +53,13 @@ const Navbar = () => {
                 {
                     user ?
                         <div>
-                            <img src={user.photoURL} alt="user photo" title={user.displayName} />
+                            <img src={user.photoURL} alt="real user photo" title={user.displayName} />
                             <small>(hover over the user photo to see the name of the user.)</small>
                             <a onClick={handleSignOut} className="btn">Logout</a>
                         </div>
                         :
                         <>
+                            <img src={defaultUser} alt="default user photo" />
                             <Link to="login"><button className="btn">Login</button></Link>
                             <Link to="register"><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Register</button></Link>
                         </>
