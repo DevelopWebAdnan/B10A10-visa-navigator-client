@@ -10,14 +10,12 @@ const MainLayout = () => {
                 <nav className='mb-11 md:mb-16'>
                     <Navbar></Navbar>
                 </nav>
-                {/* <section className='h-[600px]'>
-                    <Slider></Slider>
-                </section> */}
+
             </header>
-            <main>
+            <main className='my-2 md:my-4 lg:my-6'>
                 <Outlet></Outlet>
             </main>
-            <footer>
+            <footer className='my-2 md:my-4 lg:my-6'>
                 <Footer></Footer>
             </footer>
         </div>
