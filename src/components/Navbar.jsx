@@ -5,7 +5,6 @@ import defaultUser from "../assets/user.png";
 
 const Navbar = () => {
 
-    console.log(import.meta.env.VITE_a);
     const { user, signOutUser } = useContext(AuthContext);
 
     const handleSignOut = () => {
@@ -52,15 +51,14 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <div>
-                            <img src={user.photoURL} alt="real user photo" title={user.displayName} />
-                            <small>(hover over the user photo to see the name of the user.)</small>
-                            <a onClick={handleSignOut} className="btn">Logout</a>
+                        <div className="flex gap-2 items-center justify-center">
+                            <img src={user.photoURL} className="w-11 md:w-12 lg:w-14 rounded-4xl md:rounded-3xl lg:rounded-2xl" alt="real user photo" title={user.displayName} />
+                            <a onClick={handleSignOut} className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Logout</a>
                         </div>
                         :
                         <>
                             <img src={defaultUser} alt="default user photo" />
-                            <Link to="login"><button className="btn">Login</button></Link>
+                            <Link to="login"><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Login</button></Link>
                             <Link to="register"><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Register</button></Link>
                         </>
                 }

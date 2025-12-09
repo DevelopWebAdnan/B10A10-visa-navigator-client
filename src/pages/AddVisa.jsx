@@ -4,15 +4,23 @@ const AddVisa = () => {
         e.preventDefault();
         const image = e.target.image.value;
         const name = e.target.name.value;
+        const selectedVisa = e.target.selectedVisaType.value;
         const time = e.target.time.value;
-        const documents = e.target.documents.checked;
+        const vPassport = e.target.vPassport.checked;
+        const vApplicationForm = e.target.vApplicationForm.checked;
+        const rPsPhoto = e.target.rPsPhoto.checked;
+        const documents = [vPassport, vApplicationForm, rPsPhoto];
         const description = e.target.description.value;
         const age = e.target.age.value;
         const fee = e.target.fee.value;
-        const validity = e.target.validity.checked;
-        const method = e.target.method.checked;
+        const validity = e.target.validity.value;
+        const applicationMethod = e.target.applicationMethod.value;
+        // const myRadio = e.target.myRadio.value;
 
-        console.log('Add Visa', image, name, time, documents, description, age, fee, validity, method);
+        const newVisa = { image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod };
+
+        console.log(newVisa);
+        // console.log('image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
     }
 
     return (
@@ -25,27 +33,47 @@ const AddVisa = () => {
                     <div className="card-body">
                         <form onSubmit={handleAddVisa} className="fieldset">
                             <label className="label">Country image</label>
-                            <input type="text" name="image" className="input" placeholder="Country image" />
+                            <input type="text" name="image" className="input mb-4" placeholder="Country image" />
                             <label className="label">Country name</label>
-                            <input type="text" name="name" className="input" placeholder="Country name" />
-                            
+                            <input type="text" name="name" className="input mb-4" placeholder="Country name" />
+
+                            {/* <details className="dropdown">
+                                <summary className="btn m-1">open or close</summary>
+                                <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                    <li><a>Item 1</a></li>
+                                    <li><a>Item 2</a></li>
+                                </ul>
+                            </details> */}
+
+                            {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
+
                             {/* <div className="flex grow justify-end px-2"> */}
                             {/* <div className="flex items-stretch"> */}
                             {/* <a className="btn btn-ghost rounded-field">Button</a> */}
-                            <div className="dropdown dropdown-end">
-                                <div tabIndex={0} role="button" className="btn btn-ghost rounded-field">Visa_type</div>
+                            {/* <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" popoverTarget="visaType" style={{ anchorName: "vType" }} className="btn btn-ghost rounded-field">Visa_type</div>
                                 <ul
                                     tabIndex="-1"
-                                    className="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm">
+                                    className="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
+                                    popover="auto" id="visaType" style={{ positionAnchor: "vType" }}>
                                     <li><a>Tourist visa</a></li>
                                     <li><a>Student visa</a></li>
                                     <li><a>Office visa</a></li>
                                 </ul>
-                            </div>
+                            </div> */}
                             {/* </div> */}
                             {/* </div> */}
 
-                            <fieldset className="fieldset">
+                            <label className="label">
+                                Pick your visa-type:
+                            </label>
+                            <select name="selectedVisaType" defaultValue="tourist visa">
+                                <option value="tourist visa">Tourist visa</option>
+                                <option value="student visa">Student visa</option>
+                                <option value="office visa">Office visa</option>
+                            </select>
+
+                            <fieldset className="fieldset my-4">
                                 <legend className="fieldset-legend">What is the processing time?</legend>
                                 {/* <input type="text" className="input" placeholder="Type here" /> */}
                                 <input type="time" name="time" className="input" />
@@ -54,74 +82,86 @@ const AddVisa = () => {
                             <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                 <legend className="fieldset-legend">Required_documents</legend>
                                 <label className="label">
-                                    <input type="checkbox" defaultChecked className="checkbox" />
+                                    <input type="checkbox" name="vPassport" className="checkbox" />
                                     Valid passport
                                 </label>
                                 <label className="label">
-                                    <input type="checkbox" defaultChecked className="checkbox" />
+                                    <input type="checkbox" name="vApplicationForm" className="checkbox" />
                                     Visa application form
                                 </label>
                                 <label className="label">
-                                    <input type="checkbox" defaultChecked className="checkbox" />
+                                    <input type="checkbox" name="rPsPhoto" className="checkbox" />
                                     Recent passport-sized photograph
                                 </label>
                             </fieldset>
 
-                            <fieldset className="fieldset">
+                            <fieldset className="fieldset my-4">
                                 <legend className="fieldset-legend">Your description</legend>
-                                <textarea className="textarea h-24" placeholder="Description"></textarea>
+                                <textarea name="description" className="textarea h-24" placeholder="Description"></textarea>
                                 {/* <div className="label">Description</div> */}
                             </fieldset>
 
                             <input
                                 type="number"
                                 name="age"
-                                className="input validator"
+                                className="input"
                                 required
                                 placeholder="Age_restriction (between 21 to 51)"
                                 min="21"
                                 max="51"
                                 title="Must be between be 21 to 51"
                             />
-                            <p className="validator-hint">Must be between be 21 to 51</p>
+                            {/* <p className="validator-hint">Must be between be 21 to 51</p> */}
+
                             <input
                                 type="number"
                                 name="fee"
-                                className="input validator"
+                                className="input my-4"
                                 required
                                 placeholder="Fee (in taka)"
                                 min="1"
                                 max="1000000"
                                 title="Must be between be 1 to 1000000"
                             />
-                            <p className="validator-hint">Must be between be 1 to 1000000</p>
+                            {/* <p className="validator-hint">Must be between be 1 to 1000000</p> */}
 
                             <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                 <legend className="fieldset-legend">Validity</legend>
                                 <label className='label'>
                                     <input
-                                        type="radio" name="radio-12" defaultChecked
+                                        type="radio" name="validity" value="invalid"
                                         className="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" /> Invalid
                                 </label>
                                 <label className='label'>
                                     <input
-                                        type="radio" name="radio-12" defaultChecked
-                                        className="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600" /> Valid
+                                        type="radio" name="validity" value="valid"
+                                        className="radio radio-success" defaultChecked /> Valid
                                 </label>
                             </fieldset>
 
                             <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                 <legend className="fieldset-legend">Application_method</legend>
                                 <label className='label'>
-                                    <input type="radio" name="radio-7" className="radio radio-success" defaultChecked /> Online
+                                    <input type="radio" name="applicationMethod" value="online" className="radio" defaultChecked /> Online
                                 </label>
                                 <label className='label'>
-                                    <input type="radio" name="radio-7" className="radio radio-success" /> Offline
+                                    <input type="radio" name="applicationMethod" value="offline" className="radio" /> Offline
                                 </label>
                             </fieldset>
 
+                            {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+                                <legend className="fieldset-legend">Application_method:</legend>
+                                <label className="label">
+                                    <input type="radio" name="myRadio" value="option1" className="radio" /> Option 1
+                                    </label>
+                                <label className="label">
+                                    <input type="radio" name="myRadio" value="option2" className="radio" defaultChecked={true} /> Option 2
+                                    </label>
+                                <label><input type="radio" name="myRadio" value="option3" />Option 3</label>
+                            </fieldset> */}
+
                             {/* <div><a className="link link-hover">Forgot password?</a></div> */}
-                            <button className="btn btn-neutral mt-4">Add Visa</button>
+                            <button type="submit" className="btn btn-neutral mt-4">Add Visa</button>
                             {/* <button className="btn btn-active btn-accent">Accent</button> */}
 
                         </form>
