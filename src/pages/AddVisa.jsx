@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 const AddVisa = () => {
 
     const handleAddVisa = (e) => {
@@ -21,6 +23,26 @@ const AddVisa = () => {
 
         console.log(newVisa);
         // console.log('image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
+
+        fetch('http://localhost:5000/allVisas', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newVisa)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'User has been added successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            })
     }
 
     return (
