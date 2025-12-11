@@ -8,13 +8,16 @@ const VisaCard = ({ visa }) => {
         <div className="card bg-base-100 shadow-sm h-96">
             <figure className='h-1/2'>
                 <img
-                    className='w-full'
+                    className='w-full h-full'
                     src={image} />
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p>{selectedVisa}</p>
                 <p>{time}</p>
+                <p>{documents}</p>
+                <p>{description}</p>
+                <p>{age}</p>
                 <div className="card-actions justify-end">
                     <button className="btn btn-primary">See Details</button>
                 </div>
