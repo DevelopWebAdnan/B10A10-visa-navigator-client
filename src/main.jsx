@@ -26,7 +26,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/allVisas")
       },
       {
         path: "login",
@@ -42,7 +43,8 @@ const router = createBrowserRouter([
       },
       {
         path: "allVisas",
-        element: <AllVisas></AllVisas>
+        element: <AllVisas></AllVisas>,
+        loader: () => fetch("http://localhost:5000/allVisas")
       },
       {
         path: "visaDetails",

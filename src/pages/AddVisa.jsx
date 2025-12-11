@@ -37,7 +37,7 @@ const AddVisa = () => {
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Success!',
-                        text: 'User has been added successfully',
+                        text: 'Visa has been added successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
