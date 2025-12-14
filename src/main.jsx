@@ -17,6 +17,8 @@ import PrivateRoute from './routes/PrivateRoute';
 import VisaDetails from './pages/VisaDetails';
 import MyAddedVisas from './pages/MyAddedVisas';
 import MyVisaApplications from './pages/myVisaApplications';
+import UpdateVisa from './components/UpdateVisa';
+import MyAddedVisa from './components/MyAddedVisa';
 
 const router = createBrowserRouter([
   {
@@ -54,12 +56,54 @@ const router = createBrowserRouter([
         path: 'myAddedVisas',
         element: <PrivateRoute><MyAddedVisas></MyAddedVisas></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/allVisas')
+      //     {
+      //   fetch('http://localhost:5000/allVisas')
+      //     .then(res => res.json())
+      //     .then(data => {
+      //       console.log(data);
+      //       const singleDataId = data.map(singleVisa => singleVisa._id);
+      //       console.log(singleDataId);
+      //     })
+      // }
+        // children: [
+        //   {
+        //     path: 'myAddedVisas/updateVisa/:id',
+        //     element: <UpdateVisa></UpdateVisa>,
+        //     loader: ({ params }) => {
+        //       fetch(`http://localhost:5000/allVisas/${params.id}`)
+        //         .then(res => res.json())
+        //         .then(data => {
+        //           console.log(data);
+        //           const definiteVisa = data.find(visa => visa._id === data._id)
+        //           console.log(definiteVisa);
+        //           return definiteVisa;
+        //         })
+        //     }
+        //   },
+        // ]
       },
-      {
-        path: 'myVisaApplications',
-        element: <PrivateRoute><MyVisaApplications></MyVisaApplications></PrivateRoute>
-      }
-    ]
+  // {
+    // path: 'myAddedVisas/updateVisa/:id',
+    // element: <UpdateVisa></UpdateVisa>,
+    // path: 'myAddedVisas/myAddedVisa/:id',
+    // element: <MyAddedVisa></MyAddedVisa>,
+    // loader: ({ params }) => fetch(`http://localhost:5000/allVisas/${params.id}`)
+    //   {
+    //   fetch(`http://localhost:5000/allVisas/${params.id}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       console.log(data);
+    //       const definiteVisa = data.find(visa => visa._id === data._id)
+    //       console.log(definiteVisa);
+    //       return definiteVisa;
+    //     })
+    // }
+  // },
+  {
+    path: 'myVisaApplications',
+    element: <PrivateRoute><MyVisaApplications></MyVisaApplications></PrivateRoute>
+  }
+]
   },
 ]);
 
