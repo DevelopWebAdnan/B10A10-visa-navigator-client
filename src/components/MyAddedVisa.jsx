@@ -4,19 +4,19 @@ import Swal from 'sweetalert2';
 import UpdateVisa from './UpdateVisa';
 import { useRef } from "react";
 
-const MyAddedVisa = ({visa}) => {
+const MyAddedVisa = ({ visa, visas, setVisas }) => {
 
-     const { _id, image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod } = visa;
-    console.log(_id, image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod);
+    const { _id, image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod } = visa;
+    console.log(_id, image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod);
 
     const modalRef = useRef(null);
 
     const handleShowModalClick = () => {
         // console.log(id);
-        if(modalRef.current) {
+        if (modalRef.current) {
             modalRef.current.showModal();
 
-        // document.getElementById('my_update_modal').showModal();
+            // document.getElementById('my_update_modal').showModal();
         } else {
             console.warn('Modal reference is not available.');
         }
@@ -32,18 +32,37 @@ const MyAddedVisa = ({visa}) => {
         const vApplicationForm = e.target.vApplicationForm.checked;
         const rPsPhoto = e.target.rPsPhoto.checked;
         const documents = [vPassport, vApplicationForm, rPsPhoto];
+
+        // const documents = [
+        //     {'Valid passport': vPassport},
+        //      {'Valid Application Form': vApplicationForm}, 
+        //     {'Recent passport-sized photograph': rPsPhoto}
+        // ];
+        // const requiredDocuments = for(const document of documents) {
+
+        // }
+        // <ul>
+        const requiredDocuments = sentence.map(document => {
+            //    if(!document) {
+            <li className='text-red-500'>{document}</li>
+            //    }
+            //    else {
+            //    <li>{document}</li>
+            //    }
+        })
+        // </ul>
         const description = e.target.description.value;
         const age = e.target.age.value;
         const fee = e.target.fee.value;
         const validity = e.target.validity.value;
         const applicationMethod = e.target.applicationMethod.value;
         // const myRadio = e.target.myRadio.value;
-    
+
         const updatedVisa = { image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod };
-    
+
         console.log(updatedVisa);
-        console.log('image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
-    
+        console.log('_id: ', _id, 'image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'requiredDocuments: ', requiredDocuments, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
+
         // Send data to the server
         fetch(`http://localhost:5000/allVisas/${_id}`, {
             method: 'PUT',
@@ -62,6 +81,17 @@ const MyAddedVisa = ({visa}) => {
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
+                    // const updatedVisaCards = visas.map(updatedVisaCard => updatedVisaCard._id == updatedVisa._id);
+                    // console.log(updatedVisaCards);
+                    console.log('visa: ', visa, 'visa._id: ', visa._id, 'updatedVisa:', updatedVisa, 'updateVisa._id: ', updatedVisa._id, 'visas: ', visas);
+                    if (visa._id == updatedVisa._id) {
+                        console.log('visa: ', visa, 'updateVisa: ', updatedVisa, 'visa._id: ', visa._id, 'updateVisa._id: ', updatedVisa._id);
+                    }
+                    // const updatedVisaId = visas.find(visa => visa._id == updatedVisa._id);
+                    // console.log(updatedVisaId);
+                    const updatedVisas = visas.filter(vis => vis._id === _id);
+                    console.log(updatedVisas);
+                    // setVisas(updatedVisa);
                 }
             })
     }
@@ -91,6 +121,9 @@ const MyAddedVisa = ({visa}) => {
                                 text: "Your Visa has been deleted.",
                                 icon: "success"
                             });
+
+                            const remaining = visas.filter(vis => vis._id !== _id);
+                            setVisas(remaining);
                         }
                     })
             }
@@ -112,7 +145,20 @@ const MyAddedVisa = ({visa}) => {
                     <div className="badge badge-secondary">{selectedVisa}</div>
                 </h2>
                 <p>Time: {time}</p>
-                <p>Documents: {documents}</p>
+                <p>Documents: {sentence}</p>
+                <ol>Documents:
+                    {
+
+                        // sentence.forEach(document => {
+                            //    if(!document) {
+                            <li className='text-red-500'>{sentence}</li>
+                            //    }
+                            //    else {
+                            //    <li>{document}</li>
+                            //    }
+                        // })
+                    }
+                </ol>
                 <p>Description: {description}</p>
                 <p>Age: {age}</p>
                 <div className="card-actions justify-end">
@@ -133,7 +179,7 @@ const MyAddedVisa = ({visa}) => {
                             <div className="hero bg-base-200 min-h-screen">
                                 <div className="hero-content flex-col">
                                     <div className="text-center lg:text-left">
-                                        <h1 className="text-2xl font-bold">Update Visa {name}</h1>
+                                        <h1 className="text-2xl font-bold">Update Visa: {name}</h1>
                                     </div>
                                     <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
                                         <div className="card-body">
@@ -262,7 +308,7 @@ const MyAddedVisa = ({visa}) => {
                     <button onClick={() => handleDelete(_id)} className="btn btn-outline bg-amber-600">Delete</button>
                 </div>
             </div>
-                {/* <UpdateVisa></UpdateVisa> */}
+            {/* <UpdateVisa></UpdateVisa> */}
         </div>
     );
 };

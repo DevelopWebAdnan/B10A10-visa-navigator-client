@@ -1,15 +1,12 @@
-import { Link, Outlet, useLoaderData } from "react-router-dom";
-import Swal from "sweetalert2";
-import UpdateVisa from "../components/UpdateVisa";
+import { useLoaderData } from "react-router-dom";
 import MyAddedVisa from "../components/MyAddedVisa";
-// import { useEffect } from "react";
-// import { useRef } from "react";
+import { useState } from "react";
 
 const MyAddedVisas = () => {
     
-    // const modalRef = useRef(null);
-    const visas = useLoaderData();
-    console.log(visas);
+    const loadedVisas = useLoaderData();
+    const [visas, setVisas] = useState(loadedVisas);
+    console.log('loadedVisas:', loadedVisas, 'visas:', visas);
 
             // <dialog id="my_update_modal" className="modal modal-bottom sm:modal-middle">
             //  <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
@@ -34,6 +31,8 @@ const MyAddedVisas = () => {
                     visas.map(visa => <MyAddedVisa
                         key={visa._id} 
                         visa={visa}
+                        visas={visas}
+                        setVisas={setVisas}
                         ></MyAddedVisa>)
                 }
             </div>

@@ -1,5 +1,10 @@
+import { useLoaderData } from "react-router-dom";
+import VisaCard from "../components/VisaCard";
 
 const VisaDetails = () => {
+
+    const visas = useLoaderData();
+    console.log(visas);
 
     const handleApply = (e) => {
         e.preventDefault();
@@ -27,20 +32,30 @@ const VisaDetails = () => {
             Age_restriction
             Required_documents
             Application_method
-             <h3 className="font-bold text-lg">Email!</h3>
-             <h3 className="font-bold text-lg">Country image!</h3>
-             <h3 className="font-bold text-lg">Country name!</h3>
-             <h3 className="font-bold text-lg">Processing_time!</h3>
-                    <h3 className="font-bold text-lg">First Name!</h3>
-                    <h3 className="font-bold text-lg">Last Name!</h3>
-                    <h3 className="font-bold text-lg">Visa_type!</h3>
-                    <p className="py-4">Applied date (current date)</p>
-                    <p className="py-4">Fee (visa fee)</p>
-                    <p className="py-4"> (Validity)</p>
-                    <p className="py-4"> (Your description)</p>
-                    <p className="py-4"> (Age_restriction)</p>
-                    <p className="py-4"> (Required_documents)</p>
-                    <p className="py-4"> (Application_method)</p>
+            <h3 className="font-bold text-lg">Email!</h3>
+            <h3 className="font-bold text-lg">Country image!</h3>
+            <h3 className="font-bold text-lg">Country name!</h3>
+            <h3 className="font-bold text-lg">Processing_time!</h3>
+            <h3 className="font-bold text-lg">First Name!</h3>
+            <h3 className="font-bold text-lg">Last Name!</h3>
+            <h3 className="font-bold text-lg">Visa_type!</h3>
+            <p className="py-4">Applied date (current date)</p>
+            <p className="py-4">Fee (visa fee)</p>
+            <p className="py-4"> (Validity)</p>
+            <p className="py-4"> (Your description)</p>
+            <p className="py-4"> (Age_restriction)</p>
+            <p className="py-4"> (Required_documents)</p>
+            <p className="py-4"> (Application_method)</p>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                {
+                    visas.map(visa => <VisaCard
+                        key={visa._id}
+                        visa={visa}
+                    // isAvailable={isAvailable}         
+                    ></VisaCard>)
+                }
+            </div>
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button>
@@ -55,12 +70,12 @@ const VisaDetails = () => {
                             <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
                                 <div className="card-body">
                                     <form onSubmit={handleApply} className="fieldset">
-                                        
-                    <h3 className="font-bold text-lg">Email!</h3>
+
+                                        <h3 className="font-bold text-lg">Email!</h3>
                                         <label className="label">Email</label>
                                         <input type="email" name="email" className="input" placeholder="Email" />
                                         <h3 className="font-bold text-lg">First Name!</h3>
-                    <h3 className="font-bold text-lg">Last Name!</h3>
+                                        <h3 className="font-bold text-lg">Last Name!</h3>
                                         <label className="label">First Name</label>
                                         <input type="text" name="fname" className="input" placeholder="First Name" />
                                         <label className="label">Last Name</label>
@@ -90,9 +105,9 @@ const VisaDetails = () => {
                                         {/* <input type="time" className="input" />
                                         <fieldset className="fieldset">
                                             <legend className="fieldset-legend">What is the processing time?</legend> */}
-                                            {/* <input type="text" className="input" placeholder="Type here" /> */}
-                                            {/* <input type="time" className="input" /> */}
-                                            {/* <p className="label">Processing_time</p> */}
+                                        {/* <input type="text" className="input" placeholder="Type here" /> */}
+                                        {/* <input type="time" className="input" /> */}
+                                        {/* <p className="label">Processing_time</p> */}
                                         {/* </fieldset> */}
 
                                         {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
@@ -114,7 +129,7 @@ const VisaDetails = () => {
                                         {/* <fieldset className="fieldset">
                                             <legend className="fieldset-legend">Your description</legend>
                                             <textarea className="textarea h-24" placeholder="Description"></textarea> */}
-                                            {/* <div className="label">Description</div> */}
+                                        {/* <div className="label">Description</div> */}
                                         {/* </fieldset> */}
 
                                         {/* <input

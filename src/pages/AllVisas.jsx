@@ -1,11 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import VisaCard from "../components/VisaCard";
+// import { useState } from "react";
 
 const AllVisas = () => {
 
     const visas = useLoaderData();
     console.log(visas);
     // const { image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod } = visas;
+
+    // const [isAvailable, setIsAvailable] = useState(false);
 
     return (
         <div>
@@ -47,11 +50,51 @@ const AllVisas = () => {
                         </div>
                     </div>
                 </div> */}
-                {
+                {/* {
                     visas.map(visa => <VisaCard
                         key={visa._id}
-                        visa={visa}                    
+                        visa={visa}
+                        // isAvailable={isAvailable}         
                     ></VisaCard>)
+                } */}
+                {
+                    visas.map(visa => <div className="card bg-base-100 shadow-sm"
+                        key={visa._id}
+                        visa={visa}
+                    >
+            <figure className='h-36 md:h-44 lg:h-60'>
+                <img
+                    className='w-full h-full'
+                    src={visa.image} />
+            </figure>
+            <div className="card-body">
+                <h2 className="card-title">{visa.name}</h2>
+                <p>SelectedVisa: {visa.selectedVisa}</p>
+                <p>Time: {visa.time}</p>
+                <p>Required Documents: {visa.sentence}</p>
+                Required Documents:
+                    <ol>
+                        {
+                            // sentence.map(requiredDocument => <li>{requiredDocument}</li>)
+                            <li>{visa.sentence}</li>
+                        }
+                    </ol>
+                {/* </p> */}
+                {/* <p>Rows: {rows}</p> */}
+                {/* <p>Description: {visa.description}</p>
+                <p>Age: {visa.age}</p>
+                <p>Fee: {visa.fee}</p>
+                <p>Validity: {visa.validity}</p>
+                <p>ApplicationMethod: {visa.applicationMethod}</p> */}
+                <div className="card-actions justify-end">
+                    <button className="btn btn-primary">See Details</button>
+                </div>
+            </div>
+        </div>
+                        // key={visa._id}
+                        // visa={visa}
+                        // isAvailable={isAvailable}         
+                    )
                 }
             </div>
         </div>

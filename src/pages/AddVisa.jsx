@@ -11,7 +11,83 @@ const AddVisa = () => {
         const vPassport = e.target.vPassport.checked;
         const vApplicationForm = e.target.vApplicationForm.checked;
         const rPsPhoto = e.target.rPsPhoto.checked;
-        const documents = [vPassport, vApplicationForm, rPsPhoto];
+        // const documents = [vPassport, vApplicationForm, rPsPhoto];
+        const requiredDocumentsAvailability = [
+            { "valid passport": vPassport },
+            { "valid application form": vApplicationForm },
+            { "recent passport sized photo": rPsPhoto }
+        ]
+        // };
+        // const requiredDocuments = 
+        // <ul>
+        //     {
+        //         documents.map(document => {
+        //            if(!document) {
+        //                <li className='text-red-500'>{document}</li>
+        //            }
+        //            else {
+        //                document
+        //            }
+        //        })
+        //     }
+        // </ul>
+        // let sentence = "";
+        let sentence = [];
+        for (const requiredDocument of requiredDocumentsAvailability) {
+            console.log(requiredDocument);
+            for (const key in requiredDocument) {
+                console.log(key);
+                // const keys = Object.keys(requiredDocument)
+                // console.log(keys);
+                if (requiredDocument[key]) {
+                    console.log(key + ' is available');
+                    // sentence = key + ' is available';
+                    sentence.push(key + ' is available');
+                }
+                else {
+                    console.log(key + ' is not available');
+                    // sentence = key + ' is not available';
+                    sentence.push(key + ' is not available');
+                }
+                console.log(sentence);
+            }
+            // for (const value in requiredDocument) {
+            //     console.log(value);
+            // }
+            console.log(sentence);
+        }
+        console.log(sentence);
+
+        // const requiredDocumentsFound = requiredDocuments.map((requiredDocument) => ({
+        //     ...requiredDocument
+        // }));
+
+        //     function RequiredDocument({document}) {
+        //     const name = document ? document :
+        //     <span style={{color: "red"}}>
+        //         {document}
+        //     </span>
+
+        //     return (
+        //         {name}
+        // );
+        // }
+
+        // const rows = [];
+
+        // requiredDocumentsAvailability.forEach(requiredDocument => {
+        //     console.log(requiredDocument);
+        // if (isAvailable && !document) {
+        //     return;
+        // }
+        // rows.push(
+        //     RequiredDocument(document)
+        //     document={document}
+        //     key={document}
+        //     ></RequiredDocument>
+        // );
+        // });
+
         const description = e.target.description.value;
         const age = e.target.age.value;
         const fee = e.target.fee.value;
@@ -19,7 +95,7 @@ const AddVisa = () => {
         const applicationMethod = e.target.applicationMethod.value;
         // const myRadio = e.target.myRadio.value;
 
-        const newVisa = { image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod };
+        const newVisa = { image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod };
 
         console.log(newVisa);
         // console.log('image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
