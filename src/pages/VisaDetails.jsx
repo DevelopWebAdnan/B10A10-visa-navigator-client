@@ -1,10 +1,17 @@
 import { useLoaderData } from "react-router-dom";
-import VisaCard from "../components/VisaCard";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const VisaDetails = () => {
 
-    const visas = useLoaderData();
-    console.log(visas);
+    const {user} = useContext(AuthContext);
+
+    const visaDetails = useLoaderData();
+    console.log('visaDetails: ', visaDetails);
+
+    const { _id, image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod } = visaDetails;
+
+    // const modalRef = useRef(null);
 
     const handleApply = (e) => {
         e.preventDefault();
@@ -20,73 +27,95 @@ const VisaDetails = () => {
 
     return (
         <div>
-            <h2 className='font-black'>Visa Details</h2>
 
-            Country image
-            Country name
-            What is the processing time?
-            Visa_type
-            Applied date (current date)
-            Validity
-            Your description
-            Age_restriction
-            Required_documents
-            Application_method
-            <h3 className="font-bold text-lg">Email!</h3>
-            <h3 className="font-bold text-lg">Country image!</h3>
-            <h3 className="font-bold text-lg">Country name!</h3>
-            <h3 className="font-bold text-lg">Processing_time!</h3>
-            <h3 className="font-bold text-lg">First Name!</h3>
-            <h3 className="font-bold text-lg">Last Name!</h3>
-            <h3 className="font-bold text-lg">Visa_type!</h3>
-            <p className="py-4">Applied date (current date)</p>
-            <p className="py-4">Fee (visa fee)</p>
-            <p className="py-4"> (Validity)</p>
-            <p className="py-4"> (Your description)</p>
-            <p className="py-4"> (Age_restriction)</p>
-            <p className="py-4"> (Required_documents)</p>
-            <p className="py-4"> (Application_method)</p>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                {
-                    visas.map(visa => <VisaCard
-                        key={visa._id}
-                        visa={visa}
-                    // isAvailable={isAvailable}         
-                    ></VisaCard>)
-                }
-            </div>
+            <div>
+                <h2 className='font-black'>Visa Details {_id}</h2>
 
-            {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button>
-            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
+                Country image
+                Country name
+                What is the processing time?
+                Visa_type
+                Applied date (current date)
+                Validity
+                Your description
+                Age_restriction
+                Required_documents
+                Application_method
+                <h3 className="font-bold text-lg">Email: {user?.email}</h3>
 
-                    <div className="hero bg-base-200 min-h-screen">
-                        <div className="hero-content flex-col">
-                            <div className="text-center lg:text-left">
-                                <h1 className="text-2xl font-bold">Visa Details!</h1>
-                            </div>
-                            <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
-                                <div className="card-body">
-                                    <form onSubmit={handleApply} className="fieldset">
+                <h3 className="font-bold text-lg">First Name! {user?.displayName}</h3>
+                <h3 className="font-bold text-lg">Last Name! {user?.displayName}</h3>
 
-                                        <h3 className="font-bold text-lg">Email!</h3>
-                                        <label className="label">Email</label>
-                                        <input type="email" name="email" className="input" placeholder="Email" />
-                                        <h3 className="font-bold text-lg">First Name!</h3>
-                                        <h3 className="font-bold text-lg">Last Name!</h3>
-                                        <label className="label">First Name</label>
-                                        <input type="text" name="fname" className="input" placeholder="First Name" />
-                                        <label className="label">Last Name</label>
-                                        <input type="text" name="lname" className="input" placeholder="Last Name" />
-                                        {/* <div className="ps-4">
+
+                {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    {
+                        visas.map(visa => <VisaCard
+                            key={visa._id}
+                            visa={visa}
+                        // isAvailable={isAvailable}         
+                        ></VisaCard>)
+                    }
+                </div> */}
+
+                <div
+                    className="hero min-h-screen mb-5"
+                    style={{
+                        backgroundImage:
+                            `url(${image})`,
+                    }}
+                >
+                    <div className="hero-overlay"></div>
+                    <div className="hero-content text-neutral-content text-center">
+                        <div className="max-w-md">
+                            {/* <h1 className="mb-5 text-5xl font-bold">Hello there</h1> */}
+                            <h3 className="font-bold text-lg">Country name: {name}</h3>
+                            <h3 className="text-lg py-4">Processing time: {time}</h3>
+                            <h3 className="font-bold">Visa-type: {selectedVisa}</h3>
+                            <p className="py-4">Applied date (current date): {user?.metadata?.creationTime}</p>
+                            <p className="py-4">Fee (visa fee): {fee}</p>
+                            <p className="py-4">Validity: {validity}</p>
+                            <p className="py-4">Your description: {description}</p>
+                            <p className="py-4">Age_restriction: {age}</p>
+                            <p className="py-4">Required_documents: {sentence}</p>
+                            <p className="py-4">Application_method: {applicationMethod}</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div className="text-center">
+                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                    <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl my-6" onClick={() => document.getElementById('myDetailsModal').showModal()}>Apply for the visa</button>
+                </div>
+
+                <dialog id="myDetailsModal" className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box">
+
+                        <div className="hero bg-base-200 min-h-screen">
+                            <div className="hero-content flex-col">
+                                <div className="text-center lg:text-left">
+                                    <h1 className="text-2xl font-bold">Apply for the Visa!</h1>
+                                </div>
+                                <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
+                                    <div className="card-body">
+                                        <form onSubmit={handleApply} className="fieldset">
+
+                                            {/* <h3 className="font-bold text-lg">Email!</h3> */}
+                                            <label className="label">Email</label>
+                                            <input type="email" name="email" defaultValue={user?.email} className="input" placeholder="Email" />
+                                            {/* <h3 className="font-bold text-lg">First Name!</h3>
+                                        <h3 className="font-bold text-lg">Last Name!</h3> */}
+                                            <label className="label">First Name</label>
+                                            <input type="text" name="fname" defaultValue={user?.displayName} className="input" placeholder="First Name" />
+                                            <label className="label">Last Name</label>
+                                            <input type="text" name="lname" defaultValue={user?.displayName} className="input" placeholder="Last Name" />
+                                            {/* <div className="ps-4">
                                     <a className="text-lg font-bold">daisyUI</a>
                                 </div> */}
-                                        {/* <div className="flex grow justify-end px-2"> */}
-                                        {/* <div className="flex items-stretch"> */}
-                                        {/* <a className="btn btn-ghost rounded-field">Button</a> */}
-                                        {/* <div className="dropdown dropdown-end">
+                                            {/* <div className="flex grow justify-end px-2"> */}
+                                            {/* <div className="flex items-stretch"> */}
+                                            {/* <a className="btn btn-ghost rounded-field">Button</a> */}
+                                            {/* <div className="dropdown dropdown-end">
                                             <div tabIndex={0} role="button" className="btn btn-ghost rounded-field">Visa_type</div>
                                             <ul
                                                 tabIndex="-1"
@@ -96,21 +125,22 @@ const VisaDetails = () => {
                                                 <li><a>Office visa</a></li>
                                             </ul>
                                         </div> */}
-                                        {/* </div> */}
-                                        {/* </div> */}
+                                            {/* </div> */}
+                                            {/* </div> */}
 
-                                        <p className="py-4">Applied date (current date)</p>
-                                        <input type="date" name="date" className="input" />
+                                            {/* <p className="py-4">Applied date (current date)</p> */}
+                                            <label className="label">Applied date (current date)</label>
+                                            <input type="date" name="date" defaultValue={user?.metadata?.creationTime} className="input" />
 
-                                        {/* <input type="time" className="input" />
+                                            {/* <input type="time" className="input" />
                                         <fieldset className="fieldset">
                                             <legend className="fieldset-legend">What is the processing time?</legend> */}
-                                        {/* <input type="text" className="input" placeholder="Type here" /> */}
-                                        {/* <input type="time" className="input" /> */}
-                                        {/* <p className="label">Processing_time</p> */}
-                                        {/* </fieldset> */}
+                                            {/* <input type="text" className="input" placeholder="Type here" /> */}
+                                            {/* <input type="time" className="input" /> */}
+                                            {/* <p className="label">Processing_time</p> */}
+                                            {/* </fieldset> */}
 
-                                        {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+                                            {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                             <legend className="fieldset-legend">Required_documents</legend>
                                             <label className="label">
                                                 <input type="checkbox" defaultChecked className="checkbox" />
@@ -126,13 +156,13 @@ const VisaDetails = () => {
                                             </label>
                                         </fieldset> */}
 
-                                        {/* <fieldset className="fieldset">
+                                            {/* <fieldset className="fieldset">
                                             <legend className="fieldset-legend">Your description</legend>
                                             <textarea className="textarea h-24" placeholder="Description"></textarea> */}
-                                        {/* <div className="label">Description</div> */}
-                                        {/* </fieldset> */}
+                                            {/* <div className="label">Description</div> */}
+                                            {/* </fieldset> */}
 
-                                        {/* <input
+                                            {/* <input
                                             type="number"
                                             className="input validator"
                                             required
@@ -143,20 +173,21 @@ const VisaDetails = () => {
                                         />
                                         <p className="validator-hint">Must be between be 21 to 51</p> */}
 
-                                        <p className="py-4">Fee (visa fee)</p>
-                                        <input
-                                            type="number"
-                                            name="fee"
-                                            className="input validator"
-                                            required
-                                            placeholder="Fee (visa fee)"
-                                            min="1"
-                                            max="1000000"
-                                            title="Must be between be 1 to 1000000"
-                                        />
-                                        <p className="validator-hint">Must be between be 1 to 1000000</p>
+                                            {/* <p className="py-4">Fee (visa fee)</p> */}
+                                            <label className="label">Fee (visa fee)</label>
+                                            <input
+                                                type="number"
+                                                name="fee"
+                                                className="input validator"
+                                                required
+                                                placeholder="Fee (visa fee)"
+                                                min="1"
+                                                max="1000000"
+                                                title="Must be between be 1 to 1000000"
+                                            />
+                                            <p className="validator-hint">Must be between be 1 to 1000000</p>
 
-                                        {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+                                            {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                             <legend className="fieldset-legend">Validity</legend>
                                             <label className='label'>
                                                 <input
@@ -170,7 +201,7 @@ const VisaDetails = () => {
                                             </label>
                                         </fieldset> */}
 
-                                        {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+                                            {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                             <legend className="fieldset-legend">Application_method</legend>
                                             <label className='label'>
                                                 <input type="radio" name="radio-7" className="radio radio-success" defaultChecked /> Online
@@ -180,24 +211,25 @@ const VisaDetails = () => {
                                             </label>
                                         </fieldset> */}
 
-                                        {/* <div><a className="link link-hover">Forgot password?</a></div> */}
-                                        <button className="btn btn-neutral mt-4">Apply</button>
-                                        {/* <button className="btn btn-active btn-accent">Accent</button> */}
+                                            {/* <div><a className="link link-hover">Forgot password?</a></div> */}
+                                            <button className="btn btn-neutral mt-4">Apply</button>
+                                            {/* <button className="btn btn-active btn-accent">Accent</button> */}
 
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="modal-action">
-                        <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            <button className="btn">Close</button>
-                        </form>
+                        <div className="modal-action">
+                            <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn">Close</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </dialog>
+                </dialog>
+            </div>
         </div>
     );
 };

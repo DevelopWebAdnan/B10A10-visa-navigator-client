@@ -24,7 +24,7 @@ const Footer = () => {
                     </svg> */}
 
                     <h3>
-                        <a href="#" className="text-lg md:text-xl lg:text-2xl">VISA NAVIGATOR</a>
+                        <a href="/" className="text-lg md:text-xl lg:text-2xl">VISA NAVIGATOR</a>
                     </h3>
                     <br />
                     <h6 className="footer-title">Contact Us</h6>

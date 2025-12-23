@@ -23,8 +23,8 @@ const Navbar = () => {
         {
             user && <>
                 <li><NavLink to="/addVisa">Add Visa</NavLink></li>
-                <li><NavLink to="/visaDetails">Visa Details</NavLink></li>
                 <li><NavLink to="/myAddedVisas">My Added Visas</NavLink></li>
+                <li><NavLink to="/myVisaApplications">My Visa Applications</NavLink></li>
             </>
         }
     </>
@@ -41,7 +41,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a href="#" className="text-xl md:text-2xl lg:text-3xl">VISA NAVIGATOR</a>
+                <a href="/" className="text-xl md:text-2xl lg:text-3xl">VISA NAVIGATOR</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

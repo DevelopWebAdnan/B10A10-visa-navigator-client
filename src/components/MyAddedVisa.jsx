@@ -1,7 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+
 import Swal from 'sweetalert2';
-import UpdateVisa from './UpdateVisa';
 import { useRef } from "react";
 
 const MyAddedVisa = ({ visa, visas, setVisas }) => {
@@ -145,7 +143,7 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
                     <div className="badge badge-secondary">{selectedVisa}</div>
                 </h2>
                 <p>Time: {time}</p>
-                <p>Documents: {sentence}</p>
+                {/* <p>Documents: {sentence}</p> */}
                 <ol>Documents:
                     {
 
@@ -305,7 +303,7 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
                         </div>
                     </dialog>
 
-                    <button onClick={() => handleDelete(_id)} className="btn btn-outline bg-amber-600">Delete</button>
+                    <button onClick={() => handleDelete(_id)} className="btn btn-outline btn-error">Delete</button>
                 </div>
             </div>
             {/* <UpdateVisa></UpdateVisa> */}

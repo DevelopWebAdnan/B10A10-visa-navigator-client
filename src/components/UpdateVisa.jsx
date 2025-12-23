@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 const UpdateVisa = () => {
 
     const definiteVisa = useLoaderData();
-    console.log(definiteVisa);
+    console.log('definiteVisa: ', definiteVisa);
 
     const { _id, image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod } = definiteVisa;
     console.log(_id, image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod);

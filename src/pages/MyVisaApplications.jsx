@@ -1,7 +1,19 @@
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const MyVisaApplications = () => {
+
+    const {user} = useContext(AuthContext);
+
     return (
+        
         <div>
+            <h3 className="font-bold text-lg">Email: {user?.email}</h3>
+
+                <h3 className="font-bold text-lg">First Name! {user?.displayName}</h3>
+                <h3 className="font-bold text-lg">Last Name! {user?.displayName}</h3>
+                <p className="py-4">Applied date (current date): {user?.metadata?.creationTime}</p>
+                            <p className="py-4">Fee (visa fee): {}</p>
             <h2 className='font-black'>My Visa Applications</h2>
             <div className="card bg-base-100 w-96 shadow-sm">
                 <figure className="px-10 pt-10">

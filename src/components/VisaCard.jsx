@@ -44,8 +44,8 @@ const VisaCard = ({ visa }) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
-                <p>SelectedVisa: {selectedVisa}</p>
-                <p>Time: {time}</p>
+                <p>Visa-type: {selectedVisa}</p>
+                <p>Processing Time: {time}</p>
                 <p>Required Documents: {sentence}</p>
                 Required Documents:
                     <ol>

@@ -10,7 +10,7 @@ const Home = () => {
             <section className='h-[600px]'>
                 <Slider></Slider>
             </section>
-            <section>
+            <section className='my-4 md:my-7'>
                 <LatestVisas visas={visas}></LatestVisas>
             </section>
         </div>

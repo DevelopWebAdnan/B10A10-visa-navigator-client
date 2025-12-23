@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import VisaCard from "../components/VisaCard";
 // import { useState } from "react";
 
@@ -60,7 +60,6 @@ const AllVisas = () => {
                 {
                     visas.map(visa => <div className="card bg-base-100 shadow-sm"
                         key={visa._id}
-                        visa={visa}
                     >
             <figure className='h-36 md:h-44 lg:h-60'>
                 <img
@@ -87,7 +86,7 @@ const AllVisas = () => {
                 <p>Validity: {visa.validity}</p>
                 <p>ApplicationMethod: {visa.applicationMethod}</p> */}
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">See Details</button>
+                    <Link to={`/visaDetails/${visa._id}`}><button className="btn btn-primary">See Details</button></Link>
                 </div>
             </div>
         </div>
