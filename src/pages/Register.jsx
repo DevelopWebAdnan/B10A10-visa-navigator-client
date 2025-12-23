@@ -17,6 +17,8 @@ const Register = () => {
 
         console.log(name, photo, email, password);
 
+        // const newUser = { name, email };
+
         // reset error message
         setErrorMessage('');
 
@@ -35,18 +37,38 @@ const Register = () => {
         // create user
         createUser(email, password)
             .then(result => {
-                console.log(result.user);
+                console.log('User created at fb: ', result.user);
+
+                const createdAt = result?.user?.metadata?.creationTime;
+
+                const newUser = { name, email, createdAt };
+
+                // save user to database
+
+                fetch("http://localhost:5000/users", {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(newUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.insertedId){
+                            console.log('User created at db: ', data)};
+                    })
+
                 event.target.reset();
                 updateUserProfile({
                     displayName: name,
                     photoURL: photo
                 })
-                .then(() => {
-                    navigate('/');
-                })
-                .catch(error => {
-                    setErrorMessage(error.message);
-                })    
+                    .then(() => {
+                        navigate('/');
+                    })
+                    .catch(error => {
+                        setErrorMessage(error.message);
+                    })
             })
             .catch(error => {
                 setErrorMessage(error.message);
