@@ -29,7 +29,16 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/allVisas")
+        loader: async () => {
+          const visaRes = await fetch("http://localhost:5000/allVisas")
+          const visaData = await visaRes.json()
+          
+          const userRes = await fetch("http://localhost:5000/users")
+          
+          const userData = await userRes.json()
+          
+          return { visaData, userData };
+        }
       },
       {
         path: "login",
@@ -51,21 +60,21 @@ const router = createBrowserRouter([
       {
         path: "visaDetails/:id",
         element: <PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/allVisas/${params.id}`)
       },
       {
         path: 'myAddedVisas',
         element: <PrivateRoute><MyAddedVisas></MyAddedVisas></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/allVisas')
-      //     {
-      //   fetch('http://localhost:5000/allVisas')
-      //     .then(res => res.json())
-      //     .then(data => {
-      //       console.log(data);
-      //       const singleDataId = data.map(singleVisa => singleVisa._id);
-      //       console.log(singleDataId);
-      //     })
-      // }
+        //     {
+        //   fetch('http://localhost:5000/allVisas')
+        //     .then(res => res.json())
+        //     .then(data => {
+        //       console.log(data);
+        //       const singleDataId = data.map(singleVisa => singleVisa._id);
+        //       console.log(singleDataId);
+        //     })
+        // }
         // children: [
         //   {
         //     path: 'myAddedVisas/updateVisa/:id',
@@ -83,28 +92,28 @@ const router = createBrowserRouter([
         //   },
         // ]
       },
-  // {
-    // path: 'myAddedVisas/updateVisa/:id',
-    // element: <UpdateVisa></UpdateVisa>,
-    // path: 'myAddedVisas/myAddedVisa/:id',
-    // element: <MyAddedVisa></MyAddedVisa>,
-    // loader: ({ params }) => fetch(`http://localhost:5000/allVisas/${params.id}`)
-    //   {
-    //   fetch(`http://localhost:5000/allVisas/${params.id}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       console.log(data);
-    //       const definiteVisa = data.find(visa => visa._id === data._id)
-    //       console.log(definiteVisa);
-    //       return definiteVisa;
-    //     })
-    // }
-  // },
-  {
-    path: 'myVisaApplications',
-    element: <PrivateRoute><MyVisaApplications></MyVisaApplications></PrivateRoute>
-  }
-]
+      // {
+      // path: 'myAddedVisas/updateVisa/:id',
+      // element: <UpdateVisa></UpdateVisa>,
+      // path: 'myAddedVisas/myAddedVisa/:id',
+      // element: <MyAddedVisa></MyAddedVisa>,
+      // loader: ({ params }) => fetch(`http://localhost:5000/allVisas/${params.id}`)
+      //   {
+      //   fetch(`http://localhost:5000/allVisas/${params.id}`)
+      //     .then(res => res.json())
+      //     .then(data => {
+      //       console.log(data);
+      //       const definiteVisa = data.find(visa => visa._id === data._id)
+      //       console.log(definiteVisa);
+      //       return definiteVisa;
+      //     })
+      // }
+      // },
+      {
+        path: 'myVisaApplications',
+        element: <PrivateRoute><MyVisaApplications></MyVisaApplications></PrivateRoute>
+      }
+    ]
   },
 ]);
 

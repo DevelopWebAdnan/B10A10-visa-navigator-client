@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
-const LatestVisas = ({ visas }) => {
+const LatestVisas = ({visaData}) => {
+    console.log(visaData);
 
     return (
         <div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {
-                    visas.map(visa =>
+                    visaData.map(visa =>
                         <div className="card bg-base-100 image-full shadow-sm h-72"
                             key={visa._id}
                         >

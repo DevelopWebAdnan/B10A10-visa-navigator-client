@@ -1,9 +1,13 @@
 import { useLoaderData } from 'react-router-dom';
 import LatestVisas from '../components/LatestVisas';
 import Slider from '../components/Slider';
+import Users from '../components/Users';
 
 const Home = () => {
-    const visas = useLoaderData();
+    const returnedData = useLoaderData();
+    console.log(returnedData);
+    const {visaData, userData} = returnedData;
+    console.log(visaData, userData);
 
     return (
         <div>
@@ -11,7 +15,10 @@ const Home = () => {
                 <Slider></Slider>
             </section>
             <section className='my-4 md:my-7'>
-                <LatestVisas visas={visas}></LatestVisas>
+                <LatestVisas visaData={visaData}></LatestVisas>
+            </section>
+            <section>
+                <Users userData={userData}></Users>
             </section>
         </div>
     );
