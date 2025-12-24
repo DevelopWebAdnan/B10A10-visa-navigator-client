@@ -1,22 +1,54 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 
-const Users = ({ userData }) => {
+const Users = ({ users, setUsers }) => {
 
-    console.log(userData);
+    console.log(users);
 
-    const handleDeleteUser = (_id) => {
-        console.log(_id);
+    const handleDeleteUser = (id) => {
+        // console.log(id);
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                // delete user from database
+                fetch(`http://localhost:5000/users/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+
+                            const remainingUsers = users.filter(user => user._id !== id);
+                            setUsers(remainingUsers);
+                        }
+                    })
+            }
+        });
     }
     return (
         <div>
-            <h3 className="text-3xl">Users: {userData.length}</h3>
+            <h3 className="text-3xl">Users: {users.length}</h3>
 
             <ul className="list bg-base-100 rounded-box shadow-md">
 
                 <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Logged in users this week</li>
 
                 {
-                    userData.map(user => <li className="list-row"
+                    users.map(user => <li className="list-row"
                         key={user._id}
                     >
                         <div className="text-4xl font-thin opacity-30 tabular-nums">01</div>

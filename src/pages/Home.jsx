@@ -2,12 +2,15 @@ import { useLoaderData } from 'react-router-dom';
 import LatestVisas from '../components/LatestVisas';
 import Slider from '../components/Slider';
 import Users from '../components/Users';
+import { useState } from 'react';
 
 const Home = () => {
     const returnedData = useLoaderData();
     console.log(returnedData);
     const {visaData, userData} = returnedData;
     console.log(visaData, userData);
+    
+    const [users, setUsers] = useState(userData);
 
     return (
         <div>
@@ -18,7 +21,7 @@ const Home = () => {
                 <LatestVisas visaData={visaData}></LatestVisas>
             </section>
             <section>
-                <Users userData={userData}></Users>
+                <Users users={users} setUsers={setUsers}></Users>
             </section>
         </div>
     );

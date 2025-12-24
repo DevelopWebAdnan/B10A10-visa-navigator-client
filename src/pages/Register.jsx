@@ -41,7 +41,7 @@ const Register = () => {
 
                 const createdAt = result?.user?.metadata?.creationTime;
 
-                const newUser = { name, email, createdAt };
+                const newUser = { name, photo, email, createdAt };
 
                 // save user to database
 
