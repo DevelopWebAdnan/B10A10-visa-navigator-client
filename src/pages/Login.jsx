@@ -22,6 +22,24 @@ const Login = () => {
         signInUser(email, password)
             .then(result => {
                 console.log(result.user)
+
+                // update user login info
+                const lastLoginTime = result.user?.metadata?.lastSignInTime;
+                const loginInfo = {
+                    email, lastLoginTime
+                };
+
+                fetch('http://localhost:5000/users', {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(loginInfo)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
                 event.target.reset();
                 navigate(location?.state ? location.state : '/');
             })
