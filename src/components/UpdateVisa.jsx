@@ -31,7 +31,7 @@ const UpdateVisa = () => {
         console.log(updatedVisa);
         // console.log('image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
 
-        fetch(`http://localhost:5000/allVisas/${_id}`, {
+        fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${_id}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json"

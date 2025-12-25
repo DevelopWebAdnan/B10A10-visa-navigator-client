@@ -45,7 +45,7 @@ const Register = () => {
 
                 // save user to database
 
-                fetch("http://localhost:5000/users", {
+                fetch("https://b10-a10-visa-navigator-server-ten.vercel.app/users", {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"

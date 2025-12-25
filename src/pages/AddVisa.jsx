@@ -13,9 +13,9 @@ const AddVisa = () => {
         const rPsPhoto = e.target.rPsPhoto.checked;
         // const documents = [vPassport, vApplicationForm, rPsPhoto];
         const requiredDocumentsAvailability = [
-            { "valid passport": vPassport },
-            { "valid application form": vApplicationForm },
-            { "recent passport sized photo": rPsPhoto }
+            { "Valid passport": vPassport },
+            { "Valid application form": vApplicationForm },
+            { "Recent passport-sized photo": rPsPhoto }
         ]
         // };
         // const requiredDocuments = 
@@ -100,7 +100,7 @@ const AddVisa = () => {
         console.log(newVisa);
         // console.log('image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
 
-        fetch('http://localhost:5000/allVisas', {
+        fetch('https://b10-a10-visa-navigator-server-ten.vercel.app/visas', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -177,6 +177,7 @@ const AddVisa = () => {
                                 <input type="time" name="time" className="input" />
                                 {/* <p className="label">Processing_time</p> */}
                             </fieldset>
+
                             <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                 <legend className="fieldset-legend">Required_documents</legend>
                                 <label className="label">

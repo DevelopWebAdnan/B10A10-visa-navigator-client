@@ -29,7 +29,7 @@ const Login = () => {
                     email, lastLoginTime
                 };
 
-                fetch('http://localhost:5000/users', {
+                fetch('https://b10-a10-visa-navigator-server-ten.vercel.app/users', {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'

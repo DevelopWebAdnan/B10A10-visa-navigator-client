@@ -41,7 +41,7 @@ const VisaDetails = () => {
                 Age_restriction
                 Required_documents
                 Application_method
-                <h3 className="font-bold text-lg">Email: {user?.email}</h3>
+                <h3 className=" text-lg"><span className="font-bold">Email:</span> {user?.email}</h3>
 
                 <h3 className="font-bold text-lg">First Name! {user?.displayName}</h3>
                 <h3 className="font-bold text-lg">Last Name! {user?.displayName}</h3>

@@ -20,7 +20,7 @@ const Users = ({ users, setUsers }) => {
             if (result.isConfirmed) {
 
                 // delete user from database
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/users/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

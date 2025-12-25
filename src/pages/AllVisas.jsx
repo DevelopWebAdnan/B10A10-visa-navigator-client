@@ -1,5 +1,4 @@
 import { Link, useLoaderData } from "react-router-dom";
-import VisaCard from "../components/VisaCard";
 // import { useState } from "react";
 
 const AllVisas = () => {
@@ -89,10 +88,7 @@ const AllVisas = () => {
                     <Link to={`/visaDetails/${visa._id}`}><button className="btn btn-primary">See Details</button></Link>
                 </div>
             </div>
-        </div>
-                        // key={visa._id}
-                        // visa={visa}
-                        // isAvailable={isAvailable}         
+        </div>        
                     )
                 }
             </div>

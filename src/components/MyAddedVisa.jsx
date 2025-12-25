@@ -62,7 +62,7 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
         console.log('_id: ', _id, 'image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'requiredDocuments: ', requiredDocuments, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
 
         // Send data to the server
-        fetch(`http://localhost:5000/allVisas/${_id}`, {
+        fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${_id}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json"
@@ -107,7 +107,7 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/allVisas/${_id}`, {
+                fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
