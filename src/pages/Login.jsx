@@ -18,28 +18,26 @@ const Login = () => {
         // reset error and status
         setErrorMessage('');
 
-        console.log(email, password);
+        // console.log(email, password);
         signInUser(email, password)
             .then(result => {
                 console.log(result.user)
 
                 // update user login info
                 const lastLoginTime = result.user?.metadata?.lastSignInTime;
-                const loginInfo = {
-                    email, lastLoginTime
-                };
+                const loginInfo = { email, lastLoginTime };
 
-                fetch('https://b10-a10-visa-navigator-server-ten.vercel.app/users', {
+                fetch('http://localhost:5000/users', {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify(loginInfo)
                 })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
                 event.target.reset();
                 navigate(location?.state ? location.state : '/');
             })
@@ -51,7 +49,7 @@ const Login = () => {
     const handleGoogle = () => {
         // reset error and status
         setErrorMessage('');
-        
+
         signInWithGoogle()
             .then(result => {
                 console.log(result.user);

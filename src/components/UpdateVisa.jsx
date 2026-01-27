@@ -6,13 +6,13 @@ const UpdateVisa = () => {
     const definiteVisa = useLoaderData();
     console.log('definiteVisa: ', definiteVisa);
 
-    const { _id, image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod } = definiteVisa;
-    console.log(_id, image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod);
+    const { _id, image, countryName, selectedVisa, time, documents, description, age, fee, validity, applicationMethod } = definiteVisa;
+    console.log(_id, image, countryName, selectedVisa, time, documents, description, age, fee, validity, applicationMethod);
 
     const handleUpdateVisa = (e) => {
         e.preventDefault();
         const image = e.target.image.value;
-        const name = e.target.name.value;
+        const countryName = e.target.countryName.value;
         const selectedVisa = e.target.selectedVisaType.value;
         const time = e.target.time.value;
         const vPassport = e.target.vPassport.checked;
@@ -26,12 +26,12 @@ const UpdateVisa = () => {
         const applicationMethod = e.target.applicationMethod.value;
         // const myRadio = e.target.myRadio.value;
 
-        const updatedVisa = { image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod };
+        const updatedVisa = { image, countryName, selectedVisa, time, documents, description, age, fee, validity, applicationMethod };
 
         console.log(updatedVisa);
-        // console.log('image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
+        // console.log('image:', image, 'countryName:', countryName, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
 
-        fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${_id}`, {
+        fetch(`http://localhost:5000/addedVisas/${_id}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json"
@@ -61,7 +61,7 @@ const UpdateVisa = () => {
                 <div className="hero bg-base-200 min-h-screen">
                     <div className="hero-content flex-col">
                         <div className="text-center lg:text-left">
-                            <h1 className="text-2xl font-bold">Update Visa {definiteVisa.name}</h1>
+                            <h1 className="text-2xl font-bold">Update Visa {definiteVisa.countryName}</h1>
                         </div>
                         <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
                             <div className="card-body">
@@ -69,7 +69,7 @@ const UpdateVisa = () => {
                                     <label className="label">Country image</label>
                                     <input type="text" name="image" defaultValue={image} className="input mb-4" placeholder="Country image" />
                                     <label className="label">Country name</label>
-                                    <input type="text" name="name" defaultValue={name} className="input mb-4" placeholder="Country name" />
+                                    <input type="text" name="countryName" defaultValue={countryName} className="input mb-4" placeholder="Country name" />
 
                                     <label className="label">
                                         Pick your visa-type:
@@ -113,10 +113,10 @@ const UpdateVisa = () => {
                                         name="age"
                                         className="input"
                                         required
-                                        placeholder="Age_restriction (between 21 to 51)"
+                                        placeholder="Age_restriction (between 21 to 71)"
                                         min="21"
-                                        max="51"
-                                        title="Must be between be 21 to 51"
+                                        max="71"
+                                        title="Must be between be 21 to 71"
                                     />
 
                                     <input

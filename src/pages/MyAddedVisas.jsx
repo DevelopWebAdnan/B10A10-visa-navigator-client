@@ -1,12 +1,19 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import MyAddedVisa from "../components/MyAddedVisa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const MyAddedVisas = () => {
     
-    const loadedVisas = useLoaderData();
-    const [visas, setVisas] = useState(loadedVisas);
-    console.log('loadedVisas:', loadedVisas, 'visas:', visas);
+    const myLoadedVisas = useLoaderData();
+
+    const {email} = useParams();
+
+    const [myVisas, setMyVisas] = useState(myLoadedVisas);
+
+    const {user} = useContext(AuthContext);
+
+    console.log('myLoadedVisas: ', myLoadedVisas, 'email: ', email, 'myVisas: ', myVisas);
 
             // <dialog id="my_update_modal" className="modal modal-bottom sm:modal-middle">
             //  <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
@@ -25,14 +32,15 @@ const MyAddedVisas = () => {
 
     return (
         <div>
-            <h2 className='font-black text-5xl text-teal-500 text-center'>My Added Visas: {visas.length}</h2>
+            <h2 className='font-black text-5xl text-teal-500 text-center'>My ({email}) Added Visas: {myVisas.length}</h2>
+            <h2 className='font-black text-5xl text-teal-500 text-center'>My ({user?.email}) Added Visas: {myVisas.length}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {
-                    visas.map(visa => <MyAddedVisa
-                        key={visa._id} 
-                        visa={visa}
-                        visas={visas}
-                        setVisas={setVisas}
+                    myVisas.map(myVisa => <MyAddedVisa
+                        key={myVisa._id} 
+                        myVisa={myVisa}
+                        myVisas={myVisas}
+                        setMyVisas={setMyVisas}
                         ></MyAddedVisa>)
                 }
             </div>

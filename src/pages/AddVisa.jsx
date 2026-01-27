@@ -1,18 +1,26 @@
+import { useContext } from 'react';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../providers/AuthProvider';
+// import { TiTick} from "react-icons/ti";
+// import { ImCross } from "react-icons/im";
 
 const AddVisa = () => {
+
+    const {user} = useContext(AuthContext);
+
+    console.log(user?.email);
 
     const handleAddVisa = (e) => {
         e.preventDefault();
         const image = e.target.image.value;
-        const name = e.target.name.value;
+        const countryName = e.target.countryName.value;
         const selectedVisa = e.target.selectedVisaType.value;
         const time = e.target.time.value;
         const vPassport = e.target.vPassport.checked;
         const vApplicationForm = e.target.vApplicationForm.checked;
         const rPsPhoto = e.target.rPsPhoto.checked;
         // const documents = [vPassport, vApplicationForm, rPsPhoto];
-        const requiredDocumentsAvailability = [
+        const documentsAvailability = [
             { "Valid passport": vPassport },
             { "Valid application form": vApplicationForm },
             { "Recent passport-sized photo": rPsPhoto }
@@ -33,30 +41,100 @@ const AddVisa = () => {
         // </ul>
         // let sentence = "";
         let sentence = [];
-        for (const requiredDocument of requiredDocumentsAvailability) {
+        for (const requiredDocument of documentsAvailability) {
             console.log(requiredDocument);
             for (const key in requiredDocument) {
                 console.log(key);
                 // const keys = Object.keys(requiredDocument)
                 // console.log(keys);
                 if (requiredDocument[key]) {
-                    console.log(key + ' is available');
+                    console.log(key + ' is available. ');
                     // sentence = key + ' is available';
-                    sentence.push(key + ' is available');
+                    sentence.push(key + ': available. ');
                 }
                 else {
-                    console.log(key + ' is not available');
+                    console.log(key + ' is not available. ');
                     // sentence = key + ' is not available';
-                    sentence.push(key + ' is not available');
+                    sentence.push(key + ': missing?! ');
                 }
-                console.log(sentence);
+                // console.log('sentence: ', sentence);
+
+
+                // <h3 className="text-2xl font-thin">Nutrition: </h3>
+                // let sentence2 = [];
+                // <ul className="text-xl ml-12">
+                //     {
+                //         requiredDocument[key] && sentence2.push(
+                //             <li className="list-disc">
+                //                 {key} : (is available)
+                //             </li>
+                //         )
+                //     }
+                // </ul>
+                // console.log('sentence2: ', sentence2);
+
+                // let sentence2 = [];
+                // {requiredDocument[key] && sentence2.push(key + ' is available. ') : sentence2.push(key + ' is not available. ')};
+                // console.log('sentence2: ', sentence2);
             }
             // for (const value in requiredDocument) {
             //     console.log(value);
             // }
-            console.log(sentence);
         }
-        console.log(sentence);
+        console.log('So, sentence: ', sentence);
+
+
+        // let sentence3 = [];
+        // const documentsList = (documentsAvailability) => {
+            // let sentence4 = [];
+            // let sentence2;
+            // <ul>
+                // {
+                //     documentsAvailability.map(requiredDocument => {
+                //         console.log(requiredDocument)
+                //         for (const key in requiredDocument) {
+                //             console.log(key);
+
+                //             // let sentence3 = [] 
+                //             // const sentence3 = []
+                //             requiredDocument[key] ?
+                //                 // {
+                //                 // <li
+                //                 // key={requiredDocument.id}
+                //                 // className='text-green-800'
+                //                 // >
+                //                 sentence3.push(key + '<TiTick></TiTick>')
+                //                 // </li>
+                //                 // }
+                //                 // )
+                //                 :
+                //                 // (
+                //                 // <li
+                //                 //     className='text-red-700'
+                //                 // >
+                //                 sentence3.push(<ImCross></ImCross> + key)
+                //             // </li>
+                //             // )
+                //             // console.log('sentence3: ', sentence3);
+
+
+                //             // if (requiredDocument[key]) {
+                //             //     sentence4.push(<li className='text-green-600'>{requiredDocument[key] + ' is available. '}</li>)
+                //             // }
+                //             // else {
+                //             //     sentence4.push(<li className='text-red-500'>{requiredDocument[key] + ' is not available. '}</li>)
+                //             // }
+
+                //             // console.log('sentence4: ', sentence4);
+                //             // return <ul>{sentence4}</ul>
+                //         }
+                //     })
+                // }
+            // </ul>
+        // }
+        
+        // documentsList(documentsAvailability)
+        // console.log('So, sentence3 is chosen: ', sentence3);
 
         // const requiredDocumentsFound = requiredDocuments.map((requiredDocument) => ({
         //     ...requiredDocument
@@ -95,12 +173,15 @@ const AddVisa = () => {
         const applicationMethod = e.target.applicationMethod.value;
         // const myRadio = e.target.myRadio.value;
 
-        const newVisa = { image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod };
+        const email = user?.email;
+
+        const newVisa = { image, countryName, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod, email };
 
         console.log(newVisa);
-        // console.log('image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
+        // console.log('image:', image, 'countryName:', countryName, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
 
-        fetch('https://b10-a10-visa-navigator-server-ten.vercel.app/visas', {
+        // fetch('http://localhost:5000/addedVisas', {
+        fetch('http://localhost:5000/visas', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -133,7 +214,7 @@ const AddVisa = () => {
                             <label className="label">Country image</label>
                             <input type="text" name="image" className="input mb-4" placeholder="Country image" />
                             <label className="label">Country name</label>
-                            <input type="text" name="name" className="input mb-4" placeholder="Country name" />
+                            <input type="text" name="countryName" className="input mb-4" placeholder="Country name" />
 
                             {/* <details className="dropdown">
                                 <summary className="btn m-1">open or close</summary>
@@ -142,25 +223,6 @@ const AddVisa = () => {
                                     <li><a>Item 2</a></li>
                                 </ul>
                             </details> */}
-
-                            {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
-
-                            {/* <div className="flex grow justify-end px-2"> */}
-                            {/* <div className="flex items-stretch"> */}
-                            {/* <a className="btn btn-ghost rounded-field">Button</a> */}
-                            {/* <div className="dropdown dropdown-end">
-                                <div tabIndex={0} role="button" popoverTarget="visaType" style={{ anchorName: "vType" }} className="btn btn-ghost rounded-field">Visa_type</div>
-                                <ul
-                                    tabIndex="-1"
-                                    className="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
-                                    popover="auto" id="visaType" style={{ positionAnchor: "vType" }}>
-                                    <li><a>Tourist visa</a></li>
-                                    <li><a>Student visa</a></li>
-                                    <li><a>Office visa</a></li>
-                                </ul>
-                            </div> */}
-                            {/* </div> */}
-                            {/* </div> */}
 
                             <label className="label">
                                 Pick your visa-type:
@@ -205,10 +267,10 @@ const AddVisa = () => {
                                 name="age"
                                 className="input"
                                 required
-                                placeholder="Age_restriction (between 21 to 51)"
+                                placeholder="Age_restriction (between 21 to 71)"
                                 min="21"
-                                max="51"
-                                title="Must be between be 21 to 51"
+                                max="71"
+                                title="Must be between 21 to 71"
                             />
                             {/* <p className="validator-hint">Must be between be 21 to 51</p> */}
 
@@ -248,12 +310,7 @@ const AddVisa = () => {
                                 </label>
                             </fieldset>
 
-                            {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
-                                <legend className="fieldset-legend">Application_method:</legend>
-                                <label className="label">
-                                    <input type="radio" name="myRadio" value="option1" className="radio" /> Option 1
-                                    </label>
-                                <label className="label">
+                            {/* <label className="label">
                                     <input type="radio" name="myRadio" value="option2" className="radio" defaultChecked={true} /> Option 2
                                     </label>
                                 <label><input type="radio" name="myRadio" value="option3" />Option 3</label>

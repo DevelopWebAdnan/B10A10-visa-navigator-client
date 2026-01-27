@@ -17,8 +17,9 @@ import PrivateRoute from './routes/PrivateRoute';
 import VisaDetails from './pages/VisaDetails';
 import MyAddedVisas from './pages/MyAddedVisas';
 import MyVisaApplications from './pages/myVisaApplications';
-import UpdateVisa from './components/UpdateVisa';
-import MyAddedVisa from './components/MyAddedVisa';
+// import UpdateVisa from './components/UpdateVisa';
+// import MyAddedVisa from './components/MyAddedVisa';
+import VisaCard from './components/VisaCard';
 
 const router = createBrowserRouter([
   {
@@ -30,14 +31,19 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: async () => {
-          const visaRes = await fetch("https://b10-a10-visa-navigator-server-ten.vercel.app/visas")
+          const visaRes = await fetch("http://localhost:5000/visas")
+          // const addedVisaRes = await fetch("http://localhost:5000/addedVisas")
+          // const addedVisaData = await addedVisaRes.json()
           const visaData = await visaRes.json()
           
-          const userRes = await fetch("https://b10-a10-visa-navigator-server-ten.vercel.app/users")
-          
+          const userRes = await fetch("http://localhost:5000/users")
           const userData = await userRes.json()
+
+          const visaApplicationRes = await fetch("http://localhost:5000/visaApplications")
+          const visaApplicationData = await visaApplicationRes.json()
           
-          return { visaData, userData };
+          // return { visaData, userData };
+          return { visaData, userData, visaApplicationData };
         }
       },
       {
@@ -55,19 +61,39 @@ const router = createBrowserRouter([
       {
         path: "allVisas",
         element: <AllVisas></AllVisas>,
-        loader: () => fetch("https://b10-a10-visa-navigator-server-ten.vercel.app/visas")
+        loader: () => fetch("http://localhost:5000/visas"), 
+        // loader: () => fetch("http://localhost:5000/addedVisas"), 
+        children: [
+          {
+            // path: "allVisas/:visaType",
+            path: "allVisas/:visaType",
+            // element: <p>visaType</p>,
+            element: <VisaCard></VisaCard>,
+            loader: ({params}) => fetch(`http://localhost:5000/addedVisas/${params.visaType}`) 
+          }
+        ]
+        // loader: ({params}) => fetch(`http://localhost:5000/visas/${params.visaType}`)
       },
       {
         path: "visaDetails/:id",
         element: <PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${params.id}`)
+        // loader: ({ params }) => fetch(`http://localhost:5000/addedVisas/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/visas/${params.id}`)
+        // loader: ({ params }) => fetch(`http://localhost:5000/visaApplications/${params.id}`)
       },
       {
-        path: 'myAddedVisas',
+        // path: 'visas/:email',
+        path: 'myVisas/:email',
+        // path: 'myVisas',
+        // path: 'myAddedVisas',
         element: <PrivateRoute><MyAddedVisas></MyAddedVisas></PrivateRoute>,
-        loader: () => fetch('https://b10-a10-visa-navigator-server-ten.vercel.app/visas')
+        // loader: ({params}) => fetch(`http://localhost:5000/addedVisas/${params.email}`)
+        loader: ({params}) => fetch(`http://localhost:5000/myVisas/${params.email}`)
+        // loader: () => fetch('http://localhost:5000/myVisas')
+        // loader: () => fetch('http://localhost:5000/addedVisas')
+        // loader: () => fetch('http://localhost:5000/visas')
         //     {
-        //   fetch('https://b10-a10-visa-navigator-server-ten.vercel.app/visas')
+        //   fetch('http://localhost:5000/visas')
         //     .then(res => res.json())
         //     .then(data => {
         //       console.log(data);
@@ -80,7 +106,7 @@ const router = createBrowserRouter([
         //     path: 'myAddedVisas/updateVisa/:id',
         //     element: <UpdateVisa></UpdateVisa>,
         //     loader: ({ params }) => {
-        //       fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${params.id}`)
+        //       fetch(`http://localhost:5000/visas/${params.id}`)
         //         .then(res => res.json())
         //         .then(data => {
         //           console.log(data);
@@ -97,9 +123,9 @@ const router = createBrowserRouter([
       // element: <UpdateVisa></UpdateVisa>,
       // path: 'myAddedVisas/myAddedVisa/:id',
       // element: <MyAddedVisa></MyAddedVisa>,
-      // loader: ({ params }) => fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${params.id}`)
+      // loader: ({ params }) => fetch(`http://localhost:5000/visas/${params.id}`)
       //   {
-      //   fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${params.id}`)
+      //   fetch(`http://localhost:5000/visas/${params.id}`)
       //     .then(res => res.json())
       //     .then(data => {
       //       console.log(data);
@@ -110,7 +136,12 @@ const router = createBrowserRouter([
       // }
       // },
       {
-        path: 'myVisaApplications',
+        path: 'myVisaApplications/:email',
+        // path: 'myVisaApplications',
+        // loader: ({params}) => fetch(`http://localhost:5000/visas/${params.email}`),
+        // loader: () => fetch('http://localhost:5000/visas'),
+        // loader: () => fetch('http://localhost:5000/visaApplications'),
+        loader: ({params}) => fetch(`http://localhost:5000/myVisaApplications/${params.email}`),
         element: <PrivateRoute><MyVisaApplications></MyVisaApplications></PrivateRoute>
       }
     ]

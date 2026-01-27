@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import Heading from "./Heading";
 
 const LatestVisas = ({visaData}) => {
     console.log(visaData);
 
     return (
         <div>
+            <Heading title="Latest Visas"></Heading>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {
                     visaData.map(visa =>
@@ -17,14 +19,14 @@ const LatestVisas = ({visaData}) => {
                                     src={visa.image} />
                             </figure>
                             <div className="card-body">
-                                <h2 className="card-title">{visa.name}</h2>
+                                <h2 className="card-title">{visa.countryName}</h2>
                                 <p>Visa-type: {visa.selectedVisa}</p>
                                 <p>Processing Time: {visa.time}</p>
                                 <p>Fee: {visa.fee}</p>
                                 <p>Validity: {visa.validity}</p>
                                 <p>ApplicationMethod: {visa.applicationMethod}</p>
                                 <div className="card-actions justify-end">
-                                    <Link to={`visaDetails/${visa._id}`}><button className="btn btn-primary">See Details</button></Link>
+                                    <Link to={`/visaDetails/${visa._id}`}><button className="btn btn-primary">See Details</button></Link>
                                 </div>
                             </div>
                         </div>

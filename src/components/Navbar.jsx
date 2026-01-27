@@ -23,8 +23,14 @@ const Navbar = () => {
         {
             user && <>
                 <li><NavLink to="/addVisa">Add Visa</NavLink></li>
-                <li><NavLink to="/myAddedVisas">My Added Visas</NavLink></li>
-                <li><NavLink to="/myVisaApplications">My Visa Applications</NavLink></li>
+                {/* <li><NavLink to={`/addedVisas/${user.email}`}>My Added Visas</NavLink></li> */}
+                {/* <li><NavLink to={`/visas/${user.email}`}>My Added Visas</NavLink></li> */}
+                {/* <li><NavLink to="/myAddedVisas">My Added Visas</NavLink></li> */}
+                {/* <li><NavLink to="/myVisas">My Added Visas</NavLink></li> */}
+                <li><NavLink to={`myVisas/${user.email}`}>My Added Visas</NavLink></li>
+                {/* <li><NavLink to={`/visaApplications/${user.email}`}>My Visa Applications</NavLink></li> */}
+                <li><NavLink to={`/myVisaApplications/${user.email}`}>My Visa Applications</NavLink></li>
+                {/* <li><NavLink to='/myVisaApplications'>My Visa Applications</NavLink></li> */}
             </>
         }
     </>

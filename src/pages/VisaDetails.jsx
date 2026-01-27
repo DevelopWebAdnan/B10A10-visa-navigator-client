@@ -1,15 +1,20 @@
 import { useLoaderData } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const VisaDetails = () => {
 
-    const {user} = useContext(AuthContext);
+    // const [errorMessage, setErrorMessage] = useState("");
+
+    const { user } = useContext(AuthContext);
+
+    // const navigate = useNavigate();
 
     const visaDetails = useLoaderData();
     console.log('visaDetails: ', visaDetails);
 
-    const { _id, image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod } = visaDetails;
+    const { _id, image, countryName, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod } = visaDetails;
 
     // const modalRef = useRef(null);
 
@@ -22,14 +27,46 @@ const VisaDetails = () => {
         const date = e.target.date.value;
         const fee = e.target.fee.value;
 
-        console.log('Apply', email, fname, lname, date, fee);
+        const newApplication = { countryName, image, selectedVisa, time, fee, validity, applicationMethod, date, fname, lname, email };
+
+        console.log('newApplication: ', newApplication);
+
+        // Navigate to the home page?!!
+        // navigate('/');
+
+        // reset error and status
+        // setErrorMessage("");
+
+        // fetch("http://localhost:5000/addedVisas", {
+        fetch("http://localhost:5000/visaApplications", {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newApplication)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+
+                if (result.insertedId) {
+
+
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your application has been created',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            })
     }
 
     return (
         <div>
 
             <div>
-                <h2 className='font-black'>Visa Details {_id}</h2>
+                <h2 className='font-black'>Visa Details of id: {_id}</h2>
 
                 Country image
                 Country name
@@ -43,7 +80,7 @@ const VisaDetails = () => {
                 Application_method
                 <h3 className=" text-lg"><span className="font-bold">Email:</span> {user?.email}</h3>
 
-                <h3 className="font-bold text-lg">First Name! {user?.displayName}</h3>
+                <h3 className="font-bold text-lg">First Name: {user?.displayName}</h3>
                 <h3 className="font-bold text-lg">Last Name! {user?.displayName}</h3>
 
 
@@ -68,10 +105,11 @@ const VisaDetails = () => {
                     <div className="hero-content text-neutral-content text-center">
                         <div className="max-w-md">
                             {/* <h1 className="mb-5 text-5xl font-bold">Hello there</h1> */}
-                            <h3 className="font-bold text-lg">Country name: {name}</h3>
+                            <h3 className="font-bold text-lg">Country name: {countryName}</h3>
                             <h3 className="text-lg py-4">Processing time: {time}</h3>
                             <h3 className="font-bold">Visa-type: {selectedVisa}</h3>
-                            <p className="py-4">Applied date (current date): {user?.metadata?.creationTime}</p>
+                            {/* <p className="py-4">Applied date (current date): {user?.metadata?.creationTime}</p> */}
+                            <p className="py-4">Applied date (current date): {new Date().toDateString()}</p>
                             <p className="py-4">Fee (visa fee): {fee}</p>
                             <p className="py-4">Validity: {validity}</p>
                             <p className="py-4">Your description: {description}</p>
@@ -130,7 +168,7 @@ const VisaDetails = () => {
 
                                             {/* <p className="py-4">Applied date (current date)</p> */}
                                             <label className="label">Applied date (current date)</label>
-                                            <input type="date" name="date" defaultValue={user?.metadata?.creationTime} className="input" />
+                                            <input type="date" name="date" defaultValue={new Date().toDateString()} className="input" />
 
                                             {/* <input type="time" className="input" />
                                         <fieldset className="fieldset">
@@ -178,14 +216,15 @@ const VisaDetails = () => {
                                             <input
                                                 type="number"
                                                 name="fee"
+                                                defaultValue={fee}
                                                 className="input validator"
                                                 required
                                                 placeholder="Fee (visa fee)"
                                                 min="1"
                                                 max="1000000"
-                                                title="Must be between be 1 to 1000000"
+                                                title="Must be between 1 to 1000000"
                                             />
-                                            <p className="validator-hint">Must be between be 1 to 1000000</p>
+                                            <p className="validator-hint">Must be between 1 to 1000000</p>
 
                                             {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                             <legend className="fieldset-legend">Validity</legend>
@@ -212,7 +251,7 @@ const VisaDetails = () => {
                                         </fieldset> */}
 
                                             {/* <div><a className="link link-hover">Forgot password?</a></div> */}
-                                            <button className="btn btn-neutral mt-4">Apply</button>
+                                            <button type="submit" className="btn btn-neutral mt-4">Apply</button>
                                             {/* <button className="btn btn-active btn-accent">Accent</button> */}
 
                                         </form>

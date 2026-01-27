@@ -1,11 +1,10 @@
-
 import Swal from 'sweetalert2';
 import { useRef } from "react";
 
-const MyAddedVisa = ({ visa, visas, setVisas }) => {
+const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
 
-    const { _id, image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod } = visa;
-    console.log(_id, image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod);
+    const { _id, image, countryName, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod, email } = myVisa;
+    console.log('myVisa: ', _id, image, countryName, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod, email);
 
     const modalRef = useRef(null);
 
@@ -23,7 +22,7 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
     const handleUpdateVisa = (e) => {
         e.preventDefault();
         const image = e.target.image.value;
-        const name = e.target.name.value;
+        const countryName = e.target.countryName.value;
         const selectedVisa = e.target.selectedVisaType.value;
         const time = e.target.time.value;
         const vPassport = e.target.vPassport.checked;
@@ -56,13 +55,14 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
         const applicationMethod = e.target.applicationMethod.value;
         // const myRadio = e.target.myRadio.value;
 
-        const updatedVisa = { image, name, selectedVisa, time, documents, description, age, fee, validity, applicationMethod };
+        const updatedVisa = { image, countryName, selectedVisa, time, documents, description, age, fee, validity, applicationMethod };
 
         console.log(updatedVisa);
-        console.log('_id: ', _id, 'image:', image, 'name:', name, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'requiredDocuments: ', requiredDocuments, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
+        console.log('_id: ', _id, 'image:', image, 'countryName:', countryName, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'requiredDocuments: ', requiredDocuments, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
 
         // Send data to the server
-        fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${_id}`, {
+        // fetch(`http://localhost:5000/addedVisas/${_id}`, {
+        fetch(`http://localhost:5000/visas/${_id}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json"
@@ -81,13 +81,13 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
                     })
                     // const updatedVisaCards = visas.map(updatedVisaCard => updatedVisaCard._id == updatedVisa._id);
                     // console.log(updatedVisaCards);
-                    console.log('visa: ', visa, 'visa._id: ', visa._id, 'updatedVisa:', updatedVisa, 'updateVisa._id: ', updatedVisa._id, 'visas: ', visas);
-                    if (visa._id == updatedVisa._id) {
-                        console.log('visa: ', visa, 'updateVisa: ', updatedVisa, 'visa._id: ', visa._id, 'updateVisa._id: ', updatedVisa._id);
+                    console.log('myVisa: ', myVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa:', updatedVisa, 'updateVisa._id: ', updatedVisa._id, 'myVisas: ', myVisas);
+                    if (myVisa._id == updatedVisa._id) {
+                        console.log('myVisa: ', myVisa, 'updatedVisa: ', updatedVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa._id: ', updatedVisa._id);
                     }
                     // const updatedVisaId = visas.find(visa => visa._id == updatedVisa._id);
                     // console.log(updatedVisaId);
-                    const updatedVisas = visas.filter(vis => vis._id === _id);
+                    const updatedVisas = myVisas.filter(myVis => myVis._id === _id);
                     console.log(updatedVisas);
                     // setVisas(updatedVisa);
                 }
@@ -107,7 +107,8 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${_id}`, {
+                // fetch(`http://localhost:5000/addedVisas/${_id}`, {
+                fetch(`http://localhost:5000/visas/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -120,8 +121,8 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
                                 icon: "success"
                             });
 
-                            const remaining = visas.filter(vis => vis._id !== _id);
-                            setVisas(remaining);
+                            const remaining = myVisas.filter(myVis => myVis._id !== _id);
+                            setMyVisas(remaining);
                         }
                     })
             }
@@ -139,21 +140,23 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title">
-                    {name}
+                    {countryName}
                     <div className="badge badge-secondary">{selectedVisa}</div>
                 </h2>
                 <p>Time: {time}</p>
                 {/* <p>Documents: {sentence}</p> */}
-                <ol>Documents:
+                Documents:
+                <ol>
                     {
 
                         // sentence.forEach(document => {
-                            //    if(!document) {
-                            <li className='text-red-500'>{sentence}</li>
-                            //    }
-                            //    else {
-                            //    <li>{document}</li>
-                            //    }
+                        //    if(!document) {
+                        <li className='text-red-500'>{sentence}</li>
+                        // sentence3.map(singleSentence => <li className='text-red-500'>{singleSentence}</li>)
+                        //    }
+                        //    else {
+                        //    <li>{document}</li>
+                        //    }
                         // })
                     }
                 </ol>
@@ -177,7 +180,7 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
                             <div className="hero bg-base-200 min-h-screen">
                                 <div className="hero-content flex-col">
                                     <div className="text-center lg:text-left">
-                                        <h1 className="text-2xl font-bold">Update Visa: {name}</h1>
+                                        <h1 className="text-2xl font-bold">Update Visa: {countryName}</h1>
                                     </div>
                                     <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
                                         <div className="card-body">
@@ -185,7 +188,7 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
                                                 <label className="label">Country image</label>
                                                 <input type="text" name="image" defaultValue={image} className="input mb-4" placeholder="Country image" />
                                                 <label className="label">Country name</label>
-                                                <input type="text" name="name" defaultValue={name} className="input mb-4" placeholder="Country name" />
+                                                <input type="text" name="countryName" defaultValue={countryName} className="input mb-4" placeholder="Country name" />
 
                                                 <label className="label">
                                                     Pick your visa-type:
@@ -230,10 +233,10 @@ const MyAddedVisa = ({ visa, visas, setVisas }) => {
                                                     defaultValue={age}
                                                     className="input"
                                                     required
-                                                    placeholder="Age_restriction (between 21 to 51)"
+                                                    placeholder="Age_restriction (between 21 to 71)"
                                                     min="21"
-                                                    max="51"
-                                                    title="Must be between be 21 to 51"
+                                                    max="71"
+                                                    title="Must be between be 21 to 71"
                                                 />
 
                                                 <input
