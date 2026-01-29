@@ -3,8 +3,8 @@ import { useRef } from "react";
 
 const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
 
-    const { _id, image, countryName, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod, email } = myVisa;
-    console.log('myVisa: ', _id, image, countryName, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod, email);
+    const { _id, image, countryName, selectedVisa, time, vPassport, vApplicationForm, rPsPhoto, sentence, description, age, fee, validity, applicationMethod, email } = myVisa;
+    console.log('myVisa: ', _id, image, countryName, selectedVisa, time, 'vPassport: ', vPassport, 'vApplicationForm: ', vApplicationForm, 'rPsPhoto: ', rPsPhoto, 'sentence: ', sentence, description, age, fee, 'validity: ', validity, 'applicationMethod: ', applicationMethod, email);
 
     const modalRef = useRef(null);
 
@@ -28,7 +28,7 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
         const vPassport = e.target.vPassport.checked;
         const vApplicationForm = e.target.vApplicationForm.checked;
         const rPsPhoto = e.target.rPsPhoto.checked;
-        const documents = [vPassport, vApplicationForm, rPsPhoto];
+        // const documents = [vPassport, vApplicationForm, rPsPhoto];
 
         // const documents = [
         //     {'Valid passport': vPassport},
@@ -39,15 +39,47 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
 
         // }
         // <ul>
-        const requiredDocuments = sentence.map(document => {
+        // const requiredDocuments = sentence.map(document => {
             //    if(!document) {
-            <li className='text-red-500'>{document}</li>
+            // <li>{document}</li>
             //    }
             //    else {
             //    <li>{document}</li>
             //    }
-        })
+        // })
         // </ul>
+
+        const documentsAvailability = [
+            { "Valid passport": vPassport },
+            { "Valid application form": vApplicationForm },
+            { "Recent passport-sized photo": rPsPhoto }
+        ]
+
+        let sentence = [];
+        for (const requiredDocument of documentsAvailability) {
+            console.log(requiredDocument);
+            for (const key in requiredDocument) {
+                console.log(key);
+                // const keys = Object.keys(requiredDocument)
+                // console.log(keys);
+                if (requiredDocument[key]) {
+                    console.log(key + ' is available. ');
+                    // sentence = key + ' is available';
+                    sentence.push(key + ': available. ');
+                }
+                else {
+                    console.log(key + ' is not available. ');
+                    // sentence = key + ' is not available';
+                    sentence.push(key + ': missing?! ');
+                }
+                // console.log('sentence: ', sentence);
+            }
+            // for (const value in requiredDocument) {
+            //     console.log(value);
+            // }
+        }
+        console.log('So, updated sentence: ', sentence);
+
         const description = e.target.description.value;
         const age = e.target.age.value;
         const fee = e.target.fee.value;
@@ -55,10 +87,10 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
         const applicationMethod = e.target.applicationMethod.value;
         // const myRadio = e.target.myRadio.value;
 
-        const updatedVisa = { image, countryName, selectedVisa, time, documents, description, age, fee, validity, applicationMethod };
+        const updatedVisa = { image, countryName, selectedVisa, time, vPassport, vApplicationForm, rPsPhoto, sentence, description, age, fee, validity, applicationMethod };
 
-        console.log(updatedVisa);
-        console.log('_id: ', _id, 'image:', image, 'countryName:', countryName, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'requiredDocuments: ', requiredDocuments, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
+        console.log('updatedVisa: ', updatedVisa);
+        console.log('_id: ', _id, 'image:', image, 'countryName:', countryName, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
 
         // Send data to the server
         // fetch(`http://localhost:5000/addedVisas/${_id}`, {
@@ -88,7 +120,7 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                     // const updatedVisaId = visas.find(visa => visa._id == updatedVisa._id);
                     // console.log(updatedVisaId);
                     const updatedVisas = myVisas.filter(myVis => myVis._id === _id);
-                    console.log(updatedVisas);
+                    console.log('filtered updatedVisas: ', updatedVisas);
                     // setVisas(updatedVisa);
                 }
             })
@@ -151,7 +183,7 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
 
                         // sentence.forEach(document => {
                         //    if(!document) {
-                        <li className='text-red-500'>{sentence}</li>
+                        <li>{sentence}</li>
                         // sentence3.map(singleSentence => <li className='text-red-500'>{singleSentence}</li>)
                         //    }
                         //    else {
@@ -208,15 +240,15 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                                                 <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                                     <legend className="fieldset-legend">Required_documents</legend>
                                                     <label className="label">
-                                                        <input type="checkbox" name="vPassport" className="checkbox" />
+                                                        <input type="checkbox" name="vPassport" defaultChecked={vPassport} className="checkbox" />
                                                         Valid passport
                                                     </label>
                                                     <label className="label">
-                                                        <input type="checkbox" name="vApplicationForm" className="checkbox" />
+                                                        <input type="checkbox" name="vApplicationForm" defaultChecked={vApplicationForm} className="checkbox" />
                                                         Visa application form
                                                     </label>
                                                     <label className="label">
-                                                        <input type="checkbox" name="rPsPhoto" className="checkbox" />
+                                                        <input type="checkbox" name="rPsPhoto" defaultChecked={rPsPhoto} className="checkbox" />
                                                         Recent passport-sized photograph
                                                     </label>
                                                 </fieldset>
@@ -255,20 +287,20 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                                                     <legend className="fieldset-legend">Validity</legend>
                                                     <label className='label'>
                                                         <input
-                                                            type="radio" name="validity" value="invalid"
+                                                            type="radio" name="validity" value='invalid'
                                                             className="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" /> Invalid
                                                     </label>
                                                     <label className='label'>
                                                         <input
-                                                            type="radio" name="validity" value="valid"
-                                                            className="radio radio-success" defaultChecked /> Valid
+                                                            type="radio" name="validity" value="valid" defaultChecked
+                                                            className="radio radio-success" /> Valid
                                                     </label>
                                                 </fieldset>
 
                                                 <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                                     <legend className="fieldset-legend">Application_method</legend>
                                                     <label className='label'>
-                                                        <input type="radio" name="applicationMethod" value="online" className="radio" defaultChecked /> Online
+                                                        <input type="radio" name="applicationMethod" className="radio" value="online" defaultChecked /> Online
                                                     </label>
                                                     <label className='label'>
                                                         <input type="radio" name="applicationMethod" value="offline" className="radio" /> Offline

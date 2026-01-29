@@ -52,7 +52,7 @@ const Users = ({ users, setUsers }) => {
                         key={user._id}
                     >
                         <div className="text-4xl font-thin opacity-30 tabular-nums">01</div>
-                        <div><img className="size-10 rounded-box" src={user.photo} /></div>
+                        <div><img className="size-10 rounded-box" src={user?.photo} /></div>
                         <div className="list-col-grow">
                             <div>{user?.name}</div>
                             <div className="text-xs font-semibold opacity-60">{user.email}</div>

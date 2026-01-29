@@ -175,7 +175,7 @@ const AddVisa = () => {
 
         const email = user?.email;
 
-        const newVisa = { image, countryName, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod, email };
+        const newVisa = { image, countryName, selectedVisa, time, vPassport, vApplicationForm, rPsPhoto, sentence, description, age, fee, validity, applicationMethod, email };
 
         console.log(newVisa);
         // console.log('image:', image, 'countryName:', countryName, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'documents:', documents, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
