@@ -3,11 +3,13 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useLoaderData, useParams } from "react-router-dom";
 
-const MyVisaApplications = ({visaData, visaApplications}) => {
+// const MyVisaApplications = ({visaData, visaApplications}) => {
+const MyVisaApplications = () => {
 
     const myLoadedApplications = useLoaderData();
 
-    console.log('visaData: ', visaData, 'visaApplications: ', visaApplications, 'myLoadedApplications: ', myLoadedApplications);
+    // console.log('visaData: ', visaData, 'visaApplications: ', visaApplications, 'myLoadedApplications: ', myLoadedApplications);
+    console.log('myLoadedApplications: ', myLoadedApplications);
 
     const [myApplications, setMyApplications] = useState(myLoadedApplications);
 
@@ -25,7 +27,7 @@ const MyVisaApplications = ({visaData, visaApplications}) => {
             <h3 className="font-bold text-lg">Logged in users First Name! {user?.displayName}</h3>
             <h3 className="font-bold text-lg">Logged in users Last Name! {user?.displayName}</h3>
 
-            <h2 className='font-black'>My total Visa Applications: {visaApplications?.length}</h2>
+            {/* <h2 className='font-black'>My total Visa Applications: {visaApplications?.length}</h2> */}
             <h2 className='font-black'>My total Visa Applications: {myApplications?.length}</h2>
             {/* <div className="card bg-base-100 w-96 shadow-sm">
                 <figure className="px-10 pt-10">

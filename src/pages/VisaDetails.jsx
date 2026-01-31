@@ -81,7 +81,7 @@ const VisaDetails = () => {
                 <h3 className=" text-lg"><span className="font-bold">Email:</span> {user?.email}</h3>
 
                 <h3 className="font-bold text-lg">First Name: {user?.displayName}</h3>
-                <h3 className="font-bold text-lg">Last Name! {user?.displayName}</h3>
+                <h3 className="font-bold text-lg">Last Name! </h3>
 
 
                 {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -220,11 +220,11 @@ const VisaDetails = () => {
                                                 className="input validator"
                                                 required
                                                 placeholder="Fee (visa fee)"
-                                                min="1"
+                                                min="100"
                                                 max="1000000"
-                                                title="Must be between 1 to 1000000"
+                                                title="Must be between 100 to 1000000"
                                             />
-                                            <p className="validator-hint">Must be between 1 to 1000000</p>
+                                            <p className="validator-hint">Must be between 100 to 1000000</p>
 
                                             {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                             <legend className="fieldset-legend">Validity</legend>

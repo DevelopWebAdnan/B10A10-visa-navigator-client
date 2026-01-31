@@ -4,6 +4,10 @@ const Users = ({ users, setUsers }) => {
 
     console.log(users);
 
+    const handleUpdateUser = (id) => {
+        console.log(id);
+    }
+
     const handleDeleteUser = (id) => {
         // console.log(id);
 
@@ -52,7 +56,7 @@ const Users = ({ users, setUsers }) => {
                         key={user._id}
                     >
                         <div className="text-4xl font-thin opacity-30 tabular-nums">01</div>
-                        <div><img className="size-10 rounded-box" src={user?.photo} /></div>
+                        <div><img className="size-10 rounded-box" src={user?.photo || null} /></div>
                         <div className="list-col-grow">
                             <div>{user?.name}</div>
                             <div className="text-xs font-semibold opacity-60">{user.email}</div>
@@ -65,7 +69,7 @@ const Users = ({ users, setUsers }) => {
                             <div>Last Login At</div>
                             <div className="text-xs uppercase font-semibold opacity-60">{user.lastSignInTime}</div>
                         </div>
-                        <button className="btn btn-square btn-ghost">
+                        <button onClick={() => handleUpdateUser(user._id)} className="btn btn-square btn-ghost">
                             {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg> */}E
                         </button>
                         <button onClick={() => handleDeleteUser(user._id)} className="btn btn-square btn-ghost">

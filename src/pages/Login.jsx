@@ -68,9 +68,9 @@ const Login = () => {
                     <div className="card-body">
                         <form onSubmit={handleLogin} className="fieldset">
                             <label className="label">Email</label>
-                            <input type="email" name="email" className="input" placeholder="Email" />
+                            <input type="email" name="email" className="input" placeholder="Email" required />
                             <label className="label">Password</label>
-                            <input type="password" name="password" className="input" placeholder="Password" />
+                            <input type="password" name="password" className="input" placeholder="Password" required />
                             <div><a className="link link-hover">Forgot password?</a></div>
                             <button className="btn btn-neutral mt-4">Login</button>
 

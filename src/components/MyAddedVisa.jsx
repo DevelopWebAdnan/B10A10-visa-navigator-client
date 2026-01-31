@@ -113,15 +113,17 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                     })
                     // const updatedVisaCards = visas.map(updatedVisaCard => updatedVisaCard._id == updatedVisa._id);
                     // console.log(updatedVisaCards);
-                    console.log('myVisa: ', myVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa:', updatedVisa, 'updateVisa._id: ', updatedVisa._id, 'myVisas: ', myVisas);
+                    console.log('myVisa: ', myVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa:', updatedVisa, 'updatedVisa._id: ', updatedVisa._id, 'myVisas: ', myVisas);
                     if (myVisa._id == updatedVisa._id) {
-                        console.log('myVisa: ', myVisa, 'updatedVisa: ', updatedVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa._id: ', updatedVisa._id);
+                        console.log('myVisa._id == updatedVisa._id', 'myVisa: ', myVisa, 'updatedVisa: ', updatedVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa._id: ', updatedVisa._id);
                     }
                     // const updatedVisaId = visas.find(visa => visa._id == updatedVisa._id);
                     // console.log(updatedVisaId);
-                    const updatedVisas = myVisas.filter(myVis => myVis._id === _id);
-                    console.log('filtered updatedVisas: ', updatedVisas);
-                    // setVisas(updatedVisa);
+                    const remaining = myVisas.filter(myVis => myVis._id !== _id);
+                    console.log('remaining after updating: ', remaining);
+                    const updatedVisaAndRemaining = [...remaining, updatedVisa];
+                    console.log(updatedVisaAndRemaining);
+                    setMyVisas(updatedVisaAndRemaining);
                 }
             })
     }
@@ -163,7 +165,7 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
 
     return (
         <div
-            className="card bg-base-100 h-96 shadow-sm"
+            className="card bg-base-100 shadow-sm"
         >
             <figure className="h-1/2">
                 <img className="h-full w-full"
@@ -278,9 +280,9 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                                                     className="input my-4"
                                                     required
                                                     placeholder="Fee (in taka)"
-                                                    min="1"
+                                                    min="100"
                                                     max="1000000"
-                                                    title="Must be between be 1 to 1000000"
+                                                    title="Must be between be 100 to 1000000"
                                                 />
 
                                                 <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">

@@ -280,9 +280,9 @@ const AddVisa = () => {
                                 className="input my-4"
                                 required
                                 placeholder="Fee (in taka)"
-                                min="1"
+                                min="100"
                                 max="1000000"
-                                title="Must be between be 1 to 1000000"
+                                title="Must be between be 100 to 1000000"
                             />
                             {/* <p className="validator-hint">Must be between be 1 to 1000000</p> */}
 
