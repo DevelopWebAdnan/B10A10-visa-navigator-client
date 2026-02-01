@@ -1,6 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import MyAddedVisa from "../components/MyAddedVisa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
 const MyAddedVisas = () => {
@@ -8,12 +8,14 @@ const MyAddedVisas = () => {
     const myLoadedVisas = useLoaderData();
 
     const {email} = useParams();
+        // console.log('email from useParams(): ', email);
+    
+        
+        const [myVisas, setMyVisas] = useState(myLoadedVisas);
+        
+        const {user} = useContext(AuthContext);
 
-    const [myVisas, setMyVisas] = useState(myLoadedVisas);
-
-    // const {user} = useContext(AuthContext);
-
-    console.log('myLoadedVisas: ', myLoadedVisas, 'email: ', email, 'myVisas: ', myVisas);
+    console.log('myLoadedVisas: ', myLoadedVisas, 'email from useParams(): ', email, 'user?.email: ', user?.email, 'myVisas: ', myVisas);
 
             // <dialog id="my_update_modal" className="modal modal-bottom sm:modal-middle">
             //  <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
@@ -32,8 +34,19 @@ const MyAddedVisas = () => {
 
     return (
         <div>
+            <h3 className="font-bold text-lg">Email from useParams! {email}</h3>
+            <h3 className="font-bold text-lg">Logged in users Email! {user?.email}</h3>
+            <h3 className="font-bold text-lg">Logged in users First Name! {user?.displayName}</h3>
+            <h3 className="font-bold text-lg">Logged in users Last Name! {user?.displayName}</h3>
+
+            {/* { email === user?.email ? <> */}
+            {email === user?.email && <>
+
+                {/* </> : ""} */}
+                {/* <h2 className='font-black'>My total Visa Applications: {visaApplications?.length}</h2> */}
+                {/* <h2 className='font-black'>My total Visa Applications: {myApplications?.length}</h2> */}
             <h2 className='font-black text-5xl text-teal-500 text-center'>My ({email}) Added Visas: {myVisas.length}</h2>
-            {/* <h2 className='font-black text-5xl text-teal-500 text-center'>My ({user?.email}) Added Visas: {myVisas.length}</h2> */}
+            <h2 className='font-black text-5xl text-teal-500 text-center'>My ({user?.email}) Added Visas: {myVisas.length}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {
                     myVisas.map(myVisa => <MyAddedVisa
@@ -67,7 +80,9 @@ const MyAddedVisas = () => {
             {/* <UpdateVisa></UpdateVisa> */}
             
             {/* <Outlet></Outlet> */}
-            
+
+            </>
+            }
         </div>
     );
 };

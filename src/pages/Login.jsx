@@ -39,6 +39,8 @@ const Login = () => {
                         console.log(data);
                     })
                 event.target.reset();
+                console.log('email: ', email, 'result?.user?.email: ', result?.user?.email);
+                // navigate(email === result?.user?.email && location?.state ? location.state : '/');
                 navigate(location?.state ? location.state : '/');
             })
             .catch(error => {

@@ -15,21 +15,30 @@ const MyVisaApplications = () => {
 
     // const { _id, image, countryName, selectedVisa, time, fee, validity, applicationMethod } = myLoadedApplications;
 
-    const {email} = useParams();
-    console.log(email);
+    const { email } = useParams();
+    console.log('email from useParams(): ', email);
 
     const { user } = useContext(AuthContext);
+    console.log('email: ', email, 'user?.email: ', user?.email);
+    // const navigate = useNavigate();
 
+    // { email === user?.email ? <>
     return (
 
         <div>
 
+            <h3 className="font-bold text-lg">Email from useParams! {email}</h3>
+            <h3 className="font-bold text-lg">Logged in users Email! {user?.email}</h3>
             <h3 className="font-bold text-lg">Logged in users First Name! {user?.displayName}</h3>
             <h3 className="font-bold text-lg">Logged in users Last Name! {user?.displayName}</h3>
 
-            {/* <h2 className='font-black'>My total Visa Applications: {visaApplications?.length}</h2> */}
-            <h2 className='font-black'>My total Visa Applications: {myApplications?.length}</h2>
-            {/* <div className="card bg-base-100 w-96 shadow-sm">
+            {/* { email === user?.email ? <> */}
+            {email === user?.email && <>
+
+                {/* </> : ""} */}
+                {/* <h2 className='font-black'>My total Visa Applications: {visaApplications?.length}</h2> */}
+                <h2 className='font-black'>My total Visa Applications: {myApplications?.length}</h2>
+                {/* <div className="card bg-base-100 w-96 shadow-sm">
                 <figure className="px-10 pt-10">
                     <img
                         src={image}
@@ -56,18 +65,31 @@ const MyVisaApplications = () => {
                 </div>
             </div> */}
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {
-                // visaApplications && visaApplications.map(visaApplication => <MyVisaApplication
-                myApplications && myApplications.map(myApplication => <MyVisaApplication
-                    key={myApplication._id}
-                    myApplications={myApplications}
-                    setMyApplications={setMyApplications}
-                    myApplication={myApplication}
-                ></MyVisaApplication>)
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    {
+                        // visaApplications && visaApplications.map(visaApplication => <MyVisaApplication
+                        // email === user?.email ? <>
+                        // email === user?.email && myApplications && myApplications.map(myApplication => <MyVisaApplication
+                        myApplications && myApplications.map(myApplication => <MyVisaApplication
+                            key={myApplication._id}
+                            myApplications={myApplications}
+                            setMyApplications={setMyApplications}
+                            myApplication={myApplication}
+                        ></MyVisaApplication>)
+                        // </>
+                        // :
+                    }
+                </div>
+
+
+            </>
+                // :
+                // navigate(`myVisaApplications/${email}`)
+                // navigate(`/myVisaApplications/${user?.email}`)
+                // navigate("/")
             }
-            </div>
         </div>
+
     );
 };
 

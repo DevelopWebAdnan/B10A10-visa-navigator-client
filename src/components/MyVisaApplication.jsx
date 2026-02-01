@@ -52,8 +52,8 @@ const MyVisaApplication = ({myApplications, setMyApplications, myApplication}) =
             <h3 className="font-bold text-lg">My last name: {lname}</h3>
 
             <h2 className='font-black'>My ({email}) visa application id: {_id}</h2>
-            <div className="card bg-base-100 w-96 shadow-sm">
-                <figure className="px-10 pt-10">
+            <div className="card bg-base-100 shadow-sm">
+                <figure className="px-6 pt-6">
                     <img
                         src={image}
                         alt="Country"

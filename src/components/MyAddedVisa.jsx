@@ -4,7 +4,7 @@ import { useRef } from "react";
 const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
 
     const { _id, image, countryName, selectedVisa, time, vPassport, vApplicationForm, rPsPhoto, sentence, description, age, fee, validity, applicationMethod, email } = myVisa;
-    console.log('myVisa: ', _id, image, countryName, selectedVisa, time, 'vPassport: ', vPassport, 'vApplicationForm: ', vApplicationForm, 'rPsPhoto: ', rPsPhoto, 'sentence: ', sentence, description, age, fee, 'validity: ', validity, 'applicationMethod: ', applicationMethod, email);
+    console.log('myVisa: ', _id, image, countryName, selectedVisa, time, 'vPassport: ', vPassport, 'vApplicationForm: ', vApplicationForm, 'rPsPhoto: ', rPsPhoto, 'sentence: ', sentence, description, age, fee, 'validity: ', validity, 'applicationMethod: ', applicationMethod, 'email: ', email);
 
     const modalRef = useRef(null);
 
