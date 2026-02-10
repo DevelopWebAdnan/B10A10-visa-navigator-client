@@ -16,10 +16,10 @@ const MyVisaApplications = () => {
     // const { _id, image, countryName, selectedVisa, time, fee, validity, applicationMethod } = myLoadedApplications;
 
     const { email } = useParams();
-    console.log('email from useParams(): ', email);
+    // console.log('email from useParams(): ', email);
 
     const { user } = useContext(AuthContext);
-    console.log('email: ', email, 'user?.email: ', user?.email);
+    console.log('email from useParams: ', email, 'user?.email: ', user?.email);
     // const navigate = useNavigate();
 
     // { email === user?.email ? <>
@@ -29,8 +29,8 @@ const MyVisaApplications = () => {
 
             <h3 className="font-bold text-lg">Email from useParams! {email}</h3>
             <h3 className="font-bold text-lg">Logged in users Email! {user?.email}</h3>
-            <h3 className="font-bold text-lg">Logged in users First Name! {user?.displayName}</h3>
-            <h3 className="font-bold text-lg">Logged in users Last Name! {user?.displayName}</h3>
+            <h3 className="font-bold text-lg">Logged in users Name! {user?.displayName}</h3>
+            {/* <h3 className="font-bold text-lg">Logged in users Last Name! {user?.displayName}</h3> */}
 
             {/* { email === user?.email ? <> */}
             {email === user?.email && <>

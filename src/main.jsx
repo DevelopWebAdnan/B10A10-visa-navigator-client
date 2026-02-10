@@ -62,17 +62,22 @@ const router = createBrowserRouter([
         path: "allVisas",
         element: <AllVisas></AllVisas>,
         loader: () => fetch("http://localhost:5000/visas"), 
-        // loader: () => fetch("http://localhost:5000/addedVisas"), 
-        children: [
-          {
+         
+        // children: [
+          // {
             // path: "allVisas/:visaType",
-            path: "allVisas/:visaType",
+            // path: "allVisas/:selectedVisaType",
             // element: <p>visaType</p>,
-            element: <VisaCard></VisaCard>,
-            loader: ({params}) => fetch(`http://localhost:5000/addedVisas/${params.visaType}`) 
-          }
-        ]
-        // loader: ({params}) => fetch(`http://localhost:5000/visas/${params.visaType}`)
+            // element: <VisaCard></VisaCard>, 
+            // loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.visaType}`)
+            // loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.selectedVisaType}`)
+          // }
+        // ]
+      },
+      {
+        path: "allVisas/:visaType",
+        element: <VisaCard></VisaCard>,
+        loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.visaType}`)
       },
       {
         path: "visaDetails/:id",

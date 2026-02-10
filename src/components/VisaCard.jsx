@@ -1,12 +1,16 @@
-import { useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import Heading from "./Heading";
 
+// const VisaCard = ({ visa }) => {
 const VisaCard = () => {
 
-    // const { image, name, selectedVisa, time, sentence, description, age, fee, validity, applicationMethod } = visa;
-    // console.log(image, name, selectedVisa, time, sentence);
+    const loadedVisaCards = useLoaderData();
+    console.log('loadedVisaCards: ', loadedVisaCards);
 
-    const {visaType} = useParams();
+    // const { image, countryName, selectedVisa, time, sentence } = visa;
+    // console.log(image, countryName, selectedVisa, time, sentence);
+
+    const { visaType } = useParams();
     console.log(visaType);
 
     // const requiredDocuments = <ol>
@@ -44,36 +48,50 @@ const VisaCard = () => {
     return (
         <div>
             <Heading title="Visa Card"></Heading>
-            <div className="card bg-base-100 shadow-sm">
-                {/* <figure className='h-36 md:h-44 lg:h-60'>
-                    <img
-                        className='w-full h-full'
-                        src={image} />
-                </figure> */}
-                <div className="card-body">
-                    <h2 className="card-title">{visaType}</h2>
-                    {/* <p>Visa-type: {selectedVisa}</p>
-                    <p>Processing Time: {time}</p>
-                    <p>Required Documents: {sentence}</p> */}
-                    Required Documents:
-                    <ol>
-                        {
-                            // sentence.map(requiredDocument => <li>{requiredDocument}</li>)
-                            // <li>{sentence}</li>
-                        }
-                    </ol>
-                    {/* </p> */}
-                    {/* <p>Rows: {rows}</p> */}
-                    {/* <p>Description: {description}</p>
-                    <p>Age: {age}</p>
-                    <p>Fee: {fee}</p>
-                    <p>Validity: {validity}</p>
-                    <p>ApplicationMethod: {applicationMethod}</p> */}
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">See Details</button>
-                    </div>
-                </div>
+            {/* <Link to={`/allVisas/${visa.selectedVisa}`}> */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+                {
+                    loadedVisaCards.map(loadedVisaCard =>
+                        <div key={loadedVisaCard._id} className="card bg-base-100 shadow-sm">
+
+                            <figure className='h-36 md:h-44 lg:h-60'>
+                                <img
+                                    className='w-full h-full'
+                                    src={loadedVisaCard.image} />
+                            </figure>
+                            <div className="card-body">
+                                <h2 className="card-title">{visaType}</h2>
+                                <p>Visa-type: {loadedVisaCard.selectedVisa}</p>
+                                <p>Processing Time: {loadedVisaCard.time}</p>
+                                {/* <p>Required Documents: {loadedVisaCard.sentence}</p> */}
+                                Required Documents:
+                                <ol>
+                                    {
+                                        loadedVisaCard.sentence.map(requiredDocument => <li
+                                            key={requiredDocument}
+                                        >{requiredDocument}
+                                        </li>)
+                                        // <li>{loadedVisaCard.sentence}</li>
+                                    }
+                                </ol>
+                                {/* <p>Rows: {loadedVisaCard.rows}</p> */}
+                                <p>Description: {loadedVisaCard.description}</p>
+                                <p>Age: {loadedVisaCard.age}</p>
+                                <p>Fee: {loadedVisaCard.fee}</p>
+                                <p>Validity: {loadedVisaCard.validity}</p>
+                                <p>ApplicationMethod: {loadedVisaCard.applicationMethod}</p>
+                                <div className="card-actions justify-end">
+                                    {/* <button className="btn btn-primary">See Details</button> */}
+                                    <Link to={`/visaDetails/${loadedVisaCard._id}`}><button className="btn btn-primary">See Details</button></Link>
+                                </div>
+                            </div>
+
+                        </div>
+                    )
+                }
             </div>
+            {/* </Link> */}
         </div>
     );
 };

@@ -37,6 +37,8 @@ const VisaDetails = () => {
         // reset error and status
         // setErrorMessage("");
 
+        // document.getElementById('myDetailsModal').closeModal();
+        
         // fetch("http://localhost:5000/addedVisas", {
         fetch("http://localhost:5000/visaApplications", {
             method: "POST",
@@ -62,6 +64,17 @@ const VisaDetails = () => {
             })
     }
 
+    const loggedInUserName = user.displayName;
+    // console.log('loggedInUserName: ', loggedInUserName);
+    const splittedUser = loggedInUserName.split(' ');
+    // console.log('splittedUser: ', splittedUser);
+    const splittedUserFirst = splittedUser[0];
+    console.log('splittedUserFirst: ', splittedUserFirst);
+    const splittedUserLast = splittedUser[1];
+    console.log('splittedUserLast: ', splittedUserLast);
+    // const splittedUserName = splittedUserFirst + ' ' + splittedUserLast;
+    // console.log(splittedUserName);
+    
     return (
         <div>
 
@@ -80,8 +93,10 @@ const VisaDetails = () => {
                 Application_method
                 <h3 className=" text-lg"><span className="font-bold">Email:</span> {user?.email}</h3>
 
-                <h3 className="font-bold text-lg">First Name: {user?.displayName}</h3>
-                <h3 className="font-bold text-lg">Last Name! </h3>
+                <h3 className="font-bold text-lg">(loggedInUserName) Name: {user?.displayName}</h3>
+
+                <h3 className="font-bold text-lg">First Name: {splittedUserFirst}</h3>
+                <h3 className="font-bold text-lg">Last Name: {splittedUserLast}</h3>
 
 
                 {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -144,9 +159,9 @@ const VisaDetails = () => {
                                             {/* <h3 className="font-bold text-lg">First Name!</h3>
                                         <h3 className="font-bold text-lg">Last Name!</h3> */}
                                             <label className="label">First Name</label>
-                                            <input type="text" name="fname" defaultValue={user?.displayName} className="input" placeholder="First Name" />
+                                            <input type="text" name="fname" defaultValue={splittedUserFirst} className="input" placeholder="First Name" />
                                             <label className="label">Last Name</label>
-                                            <input type="text" name="lname" defaultValue={user?.displayName} className="input" placeholder="Last Name" />
+                                            <input type="text" name="lname" defaultValue={splittedUserLast} className="input" placeholder="Last Name" />
                                             {/* <div className="ps-4">
                                     <a className="text-lg font-bold">daisyUI</a>
                                 </div> */}
