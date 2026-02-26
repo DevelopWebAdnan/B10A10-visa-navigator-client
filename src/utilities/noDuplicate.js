@@ -16,25 +16,25 @@ function noDuplicate(arr) {
         // console.log('keys: ', keys, 'values: ', values);
         for (const key in singleVisaObject) {
             if (key === 'selectedVisa') {
-                console.log('selectedVisaprop: ', key, 'selectedVisaValue: ', singleVisaObject[key]);
+                console.log( key, 'selectedVisaValue: ', singleVisaObject[key]);
                 if(uniqueSelectedVisas.includes(singleVisaObject[key]) === false) {
                     uniqueSelectedVisas.push(singleVisaObject[key]);
-                    console.log('uniqueSelectedVisa: ', uniqueSelectedVisas);
+                    // console.log('uniqueSelectedVisa: ', uniqueSelectedVisas);
                 }
             }
             // for(const values in keys[values] ) {
             // }
             if (singleVisaObject[key] === 'tourist visa') {
                 onlyTouristVisas.push(singleVisaObject)
-                console.log('onlyTouristVisas: ', onlyTouristVisas);
+                // console.log('onlyTouristVisas: ', onlyTouristVisas);
             }
             if (singleVisaObject[key] === 'office visa') {
                 onlyOfficeVisas.push(singleVisaObject);
-                console.log('onlyOfficeVisas: ', onlyOfficeVisas);
+                // console.log('onlyOfficeVisas: ', onlyOfficeVisas);
             }
             if (singleVisaObject[key] === 'student visa') {
                 onlyStudentVisas.push(singleVisaObject);
-                console.log('onlyStudentVisas: ', onlyStudentVisas);
+                // console.log('onlyStudentVisas: ', onlyStudentVisas);
             }
 
         }

@@ -63,22 +63,23 @@ const router = createBrowserRouter([
         element: <AllVisas></AllVisas>,
         loader: () => fetch("http://localhost:5000/visas"), 
          
-        // children: [
-          // {
+        children: [
+          {
             // path: "allVisas/:visaType",
+            path: "/allVisas/:visaType",
             // path: "allVisas/:selectedVisaType",
             // element: <p>visaType</p>,
-            // element: <VisaCard></VisaCard>, 
-            // loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.visaType}`)
+            element: <VisaCard></VisaCard>, 
+            loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.visaType}`)
             // loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.selectedVisaType}`)
-          // }
-        // ]
+          }
+        ]
       },
-      {
-        path: "allVisas/:visaType",
-        element: <VisaCard></VisaCard>,
-        loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.visaType}`)
-      },
+      // {
+      //   path: "allVisas/:visaType",
+      //   element: <VisaCard></VisaCard>,
+      //   loader: ({params}) => fetch(`http://localhost:5000/allVisas/${params.visaType}`)
+      // },
       {
         path: "visaDetails/:id",
         element: <PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>,
@@ -147,6 +148,16 @@ const router = createBrowserRouter([
         // loader: () => fetch('http://localhost:5000/visas'),
         // loader: () => fetch('http://localhost:5000/visaApplications'),
         loader: ({params}) => fetch(`http://localhost:5000/myVisaApplications/${params.email}`),
+          //  const filteredApplications = myApplications.filter(applct => applct.email === email)
+          //   console.log('filteredApplications: ', filteredApplications);
+        // }, 
+        // loader: ({params}) => fetch(`http://localhost:5000/myVisaApplications/${params.email}?searchParams=${search}`),
+        // useEffect(() => {
+
+            // fetch(`http://localhost:5000/myVisaApplications/${params.email}?searchParams=${search}`)
+        // loader: ({params}) => fetch(`http://localhost:5000/myVisaApplications/${params.email}?searchParams=${search}`),
+            // fetch(`http://localhost:5000/myVisaApplications?searchParams=${search}`)
+        // }, [search])
         element: <PrivateRoute><MyVisaApplications></MyVisaApplications></PrivateRoute>
       }
     ]

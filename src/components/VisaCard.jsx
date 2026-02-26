@@ -47,7 +47,7 @@ const VisaCard = () => {
 
     return (
         <div>
-            <Heading title="Visa Card"></Heading>
+            {/* <Heading title="Visa Card"></Heading> */}
             {/* <Link to={`/allVisas/${visa.selectedVisa}`}> */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
 
@@ -62,7 +62,7 @@ const VisaCard = () => {
                             </figure>
                             <div className="card-body">
                                 <h2 className="card-title">{visaType}</h2>
-                                <p>Visa-type: {loadedVisaCard.selectedVisa}</p>
+                                {/* <p>Visa-type: {loadedVisaCard.selectedVisa}</p> */}
                                 <p>Processing Time: {loadedVisaCard.time}</p>
                                 {/* <p>Required Documents: {loadedVisaCard.sentence}</p> */}
                                 Required Documents:
@@ -76,11 +76,11 @@ const VisaCard = () => {
                                     }
                                 </ol>
                                 {/* <p>Rows: {loadedVisaCard.rows}</p> */}
-                                <p>Description: {loadedVisaCard.description}</p>
+                                {/* <p>Description: {loadedVisaCard.description}</p>
                                 <p>Age: {loadedVisaCard.age}</p>
                                 <p>Fee: {loadedVisaCard.fee}</p>
                                 <p>Validity: {loadedVisaCard.validity}</p>
-                                <p>ApplicationMethod: {loadedVisaCard.applicationMethod}</p>
+                                <p>ApplicationMethod: {loadedVisaCard.applicationMethod}</p> */}
                                 <div className="card-actions justify-end">
                                     {/* <button className="btn btn-primary">See Details</button> */}
                                     <Link to={`/visaDetails/${loadedVisaCard._id}`}><button className="btn btn-primary">See Details</button></Link>

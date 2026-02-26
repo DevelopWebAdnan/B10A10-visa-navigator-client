@@ -52,30 +52,34 @@ const Users = ({ users, setUsers }) => {
 
                 {
                     // users &&
-                     users.map(user => <li className="list-row"
-                        key={user._id}
-                    >
-                        <div className="text-4xl font-thin opacity-30 tabular-nums">01</div>
-                        <div><img className="size-10 rounded-box" src={user?.photo || null} /></div>
-                        <div className="list-col-grow">
-                            <div>{user?.name}</div>
-                            <div className="text-xs font-semibold opacity-60">{user.email}</div>
-                        </div>
-                        <div className="list-col-grow">
-                            <div>Created At</div>
-                            <div className="text-xs uppercase font-semibold opacity-60">{user.createdAt}</div>
-                        </div>
-                        <div className="list-col-grow">
-                            <div>Last Login At</div>
-                            <div className="text-xs uppercase font-semibold opacity-60">{user.lastSignInTime}</div>
-                        </div>
-                        <button onClick={() => handleUpdateUser(user._id)} className="btn btn-square btn-ghost">
-                            {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg> */}E
-                        </button>
-                        <button onClick={() => handleDeleteUser(user._id)} className="btn btn-square btn-ghost">
-                            {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg> */}X
-                        </button>
-                    </li>)
+                    users.length === 0 ? (
+                        <p>No data found</p>
+                    ) : (
+                        users.map((user, idx) => <li className="list-row"
+                            key={user._id}
+                        >
+                            <div className="text-4xl font-thin opacity-30 tabular-nums">{idx + 1}</div>
+                            <div><img className="size-10 rounded-box" src={user?.photo || null} /></div>
+                            <div className="list-col-grow">
+                                <div>{user?.name}</div>
+                                <div className="text-xs font-semibold opacity-60">{user.email}</div>
+                            </div>
+                            <div className="list-col-grow">
+                                <div>Created At</div>
+                                <div className="text-xs uppercase font-semibold opacity-60">{user.createdAt}</div>
+                            </div>
+                            <div className="list-col-grow">
+                                <div>Last Login At</div>
+                                <div className="text-xs uppercase font-semibold opacity-60">{user.lastSignInTime}</div>
+                            </div>
+                            <button onClick={() => handleUpdateUser(user._id)} className="btn btn-square btn-ghost">
+                                {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg> */}E
+                            </button>
+                            <button onClick={() => handleDeleteUser(user._id)} className="btn btn-square btn-ghost">
+                                {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg> */}X
+                            </button>
+                        </li>)
+                    )
                 }
                 {/* <li className="list-row">
                     <div className="text-4xl font-thin opacity-30 tabular-nums">01</div>

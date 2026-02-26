@@ -8,7 +8,7 @@ const AddVisa = () => {
 
     const {user} = useContext(AuthContext);
 
-    console.log(user?.email);
+    console.log('user?.email: ', user?.email);
 
     const handleAddVisa = (e) => {
         e.preventDefault();

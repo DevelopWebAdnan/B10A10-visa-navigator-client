@@ -18,31 +18,13 @@ const AllVisas = () => {
 
     return (
         <div>
-            {/* name of each tab group should be unique */}
-            <div className="tabs tabs-box">
-                <input type="radio" name="my_tabs_1" className="tab" aria-label="tourist visa" />
-                <input type="radio" name="my_tabs_1" className="tab" aria-label="office visa" defaultChecked />
-                <input type="radio" name="my_tabs_1" className="tab" aria-label="student visa" />
-            </div>
-
-            <div className="overflow-x-auto max-w-60">
-                <div className="tabs-lift tabs min-w-max">
-                    <input type="radio" name="my_tabs_7" className="tab z-1" aria-label="Tab title 1" />
-                    <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">Tab content 1</div>
-                    <input type="radio" name="my_tabs_7" className="tab z-1" aria-label="Tab title 2" defaultChecked />
-                    <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">Tab content 2</div>
-                    <input type="radio" name="my_tabs_7" className="tab z-1" aria-label="Tab title 3" />
-                    <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">Tab content 3</div>
-                    <input type="radio" name="my_tabs_7" className="tab z-1" aria-label="Tab title 4" />
-                    <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">Tab content 4</div>
-                </div>
-            </div>
+            
+            <Heading title="All Visas"></Heading >
 
             <ul className="menu lg:menu-horizontal bg-base-200 rounded-box lg:mb-64">
                 {/* <li><Link to={`allVisas/${allVisas.selectedVisa}`}>{allVisas.selectedVisa}</Link></li> */}
 
                 <li>
-                    {/* <Link to={`allVisas/${allVisas.selectedVisa}`}> */}
                     {/* <Link to={`allVisas/${allVisas.selectedVisa}`}>
                         <VisaCard key={visa._id} visa={visa}></VisaCard>
                     </Link> */}
@@ -92,8 +74,8 @@ const AllVisas = () => {
                         {/* <summary>Parent item</summary> */}
                         <summary>Visa Types</summary>
                         <ul>
-                            <li><a>Submenu 1</a></li>
-                            <li><a>Submenu 2</a></li>
+                            {/* <li><a>Submenu 1</a></li>
+                            <li><a>Submenu 2</a></li> */}
                             {/* <li><Link to={`allVisas/${allVisas.selectedVisa}`}>{allVisas.selectedVisa}</Link></li> */}
                             <li>
                                 {/* name of each tab group should be unique */}
@@ -104,7 +86,7 @@ const AllVisas = () => {
                                                 key={uniqueSelectedVisa}
                                                 to={`/allVisas/${uniqueSelectedVisa}`}
                                             >
-                                                <input type="radio" name="my_tabs_1" className="tab" aria-label={uniqueSelectedVisa} />
+                                                <input type="radio" className="tab" aria-label={uniqueSelectedVisa} />
                                             </Link>
                                         )
                                     }
@@ -112,33 +94,33 @@ const AllVisas = () => {
                                     <input type="radio" name="my_tabs_1" className="tab" aria-label="student visa" /> */}
                                 </div>
 
-                                <div className="overflow-x-auto max-w-60">
-                                    <div className="tabs-lift tabs min-w-max">
-                                        <input type="radio" name="my_tabs_7" className="tab z-1" aria-label="Tourist visa" />
-                                        <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">Tourist Visas</div>
-                                {
-                                    //  allVisas.map(visa => (
+                                {/* <div className="overflow-x-auto max-w-60">
+                                    <div className="tabs-lift tabs min-w-max"> */}
+                                        {/* <input type="radio" name="my_tabs_7" className="tab z-1" aria-label="Tourist visa" />
+                                        <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">Tourist Visas</div> */}
+                                {/* {
+                                     allVisas.map(visa => (
                                     uniqueSelectedVisas.map(uniqueSelectedVisa => (
-                                        //  <Link to={`/allVisas/${allVisas.selectedVisa}`}>
-                                        //  <Link key={visa.selectedVisa} to={`/allVisas/${visa.selectedVisa}`}>
+                                         <Link to={`/allVisas/${allVisas.selectedVisa}`}>
+                                          <Link key={visa.selectedVisa} to={`/allVisas/${visa.selectedVisa}`}>
 
                                         <Link key={uniqueSelectedVisa} to={`/allVisas/${uniqueSelectedVisa}`}>
                                             {uniqueSelectedVisa}
-                                            {/* {visa.selectedVisa} */}
+                                            {visa.selectedVisa}
                                             <input type="radio" name="my_tabs_7" className="tab z-1" aria-label={uniqueSelectedVisa} />
                                             <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">{uniqueSelectedVisa}</div>
                                         </Link>
                                     ))
-                                }
+                                } */}
                                         {/* <input type="radio" name="my_tabs_7" className="tab z-1" aria-label="Office visas" defaultChecked />
                                         <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">Office visas</div>
                                         <input type="radio" name="my_tabs_7" className="tab z-1" aria-label="Student Visas" />
                                         <div className="sticky start-0 tab-content max-w-60 border-base-300 bg-base-100 p-6">Student visas</div> */}
-                                    </div>
-                                </div>
+                                    {/* </div>
+                                </div> */}
 
                             </li>
-                            <li>
+                            {/* <li>
                                 <details open>
                                     <summary>Parent</summary>
                                     <ul>
@@ -147,7 +129,7 @@ const AllVisas = () => {
 
                                     </ul>
                                 </details>
-                            </li>
+                            </li> */}
                         </ul>
                     </details>
                 </li>
@@ -158,7 +140,7 @@ const AllVisas = () => {
 
             {/* <Outlet></Outlet> */}
 
-            <Heading title="All Visas"></Heading >
+            {/* <Heading title="All Visas"></Heading > */}
 
             <Outlet></Outlet>
 
