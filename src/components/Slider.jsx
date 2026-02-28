@@ -5,6 +5,7 @@ import card from '../assets/card-2439141_1280.jpg';
 
 const Slider = () => {
     return (
+        // <div className="carousel w-full h-full bg-white dark:bg-gray-900">
         <div className="carousel w-full h-full">
             <div id="slide1" className="carousel-item relative w-full">
                 <img

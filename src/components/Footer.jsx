@@ -2,7 +2,7 @@
 const Footer = () => {
     return (
         <div>
-            <footer className="footer sm:footer-horizontal bg-base-100 text-base-content p-10">
+            <footer className="footer sm:footer-horizontal bg-base-100 dark:bg-gray-900 text-base-content dark:text-base-100 p-10">
                 {/* <nav>
                     <h6 className="footer-title">Services</h6>
                     <a className="link link-hover">Branding</a>
@@ -47,7 +47,7 @@ const Footer = () => {
                     <a className="link link-hover">Cookie policy</a>
                 </nav>
             </footer>
-            <footer className="footer bg-base-100 text-base-content border-base-300 border-t px-10 py-4">
+            <footer className="footer bg-base-100 dark:bg-gray-900 text-base-content dark:text-base-100 border-base-300 border-t px-10 py-4">
                 <aside>
                     <p>Copyright © {new Date().getFullYear()} - All right reserved by VISA NAVIGATOR Portal</p>
                 </aside>

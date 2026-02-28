@@ -44,9 +44,9 @@ const Users = ({ users, setUsers }) => {
     }
     return (
         <div>
-            <h3 className="text-3xl">Users: {users.length}</h3>
+            <h3 className="text-3xl text-black dark:text-white">Users: {users.length}</h3>
 
-            <ul className="list bg-base-100 rounded-box shadow-md">
+            <ul className="list bg-base-100 dark:bg-gray-900 text-base-content dark:text-base-100 rounded-box shadow-md">
 
                 <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Logged in users this week</li>
 
