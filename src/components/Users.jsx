@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import Heading from './Heading';
 
 const Users = ({ users, setUsers }) => {
 
@@ -44,11 +45,13 @@ const Users = ({ users, setUsers }) => {
     }
     return (
         <div>
-            <h3 className="text-3xl text-black dark:text-white">Users: {users.length}</h3>
+            <Heading title="Happy Clients who have Registered Their Account Here"></Heading>
+            <Heading subtitle="Embark on a Global Exploration: Experience Joy in 30+ countries and Across the World"></Heading>
+            <h3 className="text-3xl text-black dark:text-white">Our Users: {users.length}</h3>
 
             <ul className="list bg-base-100 dark:bg-gray-900 text-base-content dark:text-base-100 rounded-box shadow-md">
 
-                <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Logged in users this week</li>
+                <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Registered users this year</li>
 
                 {
                     // users &&
@@ -59,16 +62,20 @@ const Users = ({ users, setUsers }) => {
                             key={user._id}
                         >
                             <div className="text-4xl font-thin opacity-30 tabular-nums">{idx + 1}</div>
-                            <div><img className="size-10 rounded-box" src={user?.photo || null} /></div>
-                            <div className="list-col-grow">
+                            {/* <div><img className="size-10 rounded-box" src={user?.photo || null} /></div> */}
+                            <div><img className="size-10 rounded-box" src={user?.photo} /></div>
+                            {/* <div className="list-col-grow"> */}
+                            <div>
                                 <div>{user?.name}</div>
-                                <div className="text-xs font-semibold opacity-60">{user.email}</div>
+                                {/* <div className="text-xs font-semibold opacity-60">{user.email}</div> */}
                             </div>
-                            <div className="list-col-grow">
+                            {/* <div className="list-col-grow"> */}
+                            <div>
                                 <div>Created At</div>
                                 <div className="text-xs uppercase font-semibold opacity-60">{user.createdAt}</div>
                             </div>
-                            <div className="list-col-grow">
+                            {/* <div className="list-col-grow"> */}
+                            <div className='list-col-wrap'>
                                 <div>Last Login At</div>
                                 <div className="text-xs uppercase font-semibold opacity-60">{user.lastSignInTime}</div>
                             </div>

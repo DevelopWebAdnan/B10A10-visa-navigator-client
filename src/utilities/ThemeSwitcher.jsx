@@ -14,8 +14,8 @@ const ThemeSwitcher = () => {
     }, [darkMode]);
 
     const toggleDarkMode = () => {
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        setDarkMode(isDarkMode);
+        // const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        // setDarkMode(isDarkMode);
         setDarkMode((prevMode) => !prevMode);
     };
 

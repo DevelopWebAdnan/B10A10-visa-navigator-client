@@ -122,7 +122,7 @@ const Register = () => {
 
                             {/* <fieldset className="fieldset mx-auto"> */}
                             <legend className="fieldset-legend">What is your photo-url?</legend>
-                            <input type="text" name='photo' className="input" placeholder="Photo URL" />
+                            <input type="text" name='photo' className="input" placeholder="Photo URL" required />
                             {/* <p className="label">Optional</p> */}
                             {/* </fieldset> */}
 
