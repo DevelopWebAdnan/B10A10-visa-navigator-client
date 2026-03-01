@@ -1,11 +1,14 @@
 import React from 'react';
 import Heading from './Heading';
+import { Fade } from 'react-awesome-reveal';
 
 const DependableVisa = () => {
     return (
         <div>
-            <Heading title="Dependable and Trustworthy Visa"></Heading>
-            <Heading subtitle="Our team of seasoned professionals understands the complexities of immigration laws and visa procedures."></Heading>
+            <Fade cascade damping={0.5}>
+                <Heading title="Dependable and Trustworthy Visa"></Heading>
+                <Heading subtitle="Our team of seasoned professionals understands the complexities of immigration laws and visa procedures."></Heading>
+            </Fade>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="card card-border bg-base-100 w-96 lg:w-lg">

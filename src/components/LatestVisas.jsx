@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import Heading from "./Heading";
+import { Fade } from "react-awesome-reveal";
 
 const LatestVisas = ({ visaData }) => {
     console.log(visaData);
 
     return (
         <div>
-            <Heading title="Latest Visas"></Heading>
-            <Heading subtitle="At least 6 latest(newly added) visa cards"></Heading>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {/* <Fade cascade damping={0.5}> */}
+                <Heading title="Latest Visas"></Heading>
+                <Heading subtitle="At least 6 latest(newly added) visa cards"></Heading>
+            {/* </Fade> */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     visaData.length === 0 ? (
                         <p>No visa data found.</p>

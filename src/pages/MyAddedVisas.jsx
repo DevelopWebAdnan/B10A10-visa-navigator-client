@@ -47,7 +47,7 @@ const MyAddedVisas = () => {
                 {/* <h2 className='font-black'>My total Visa Applications: {myApplications?.length}</h2> */}
             <h2 className='font-black text-5xl text-teal-500 text-center'>Added Visas from Email({email}): {myVisas.length}</h2>
             <h2 className='font-black text-5xl text-teal-500 text-center'>Logged in users({user?.email}) Added Visas: {myVisas.length}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     myVisas.map(myVisa => <MyAddedVisa
                         key={myVisa._id} 

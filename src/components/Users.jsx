@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import Heading from './Heading';
+import { Fade } from 'react-awesome-reveal';
 
 const Users = ({ users, setUsers }) => {
 
@@ -45,9 +46,11 @@ const Users = ({ users, setUsers }) => {
     }
     return (
         <div>
-            <Heading title="Happy Clients who have Registered Their Account Here"></Heading>
-            <Heading subtitle="Embark on a Global Exploration: Experience Joy in 30+ countries and Across the World"></Heading>
-            <h3 className="text-3xl text-black dark:text-white">Our Users: {users.length}</h3>
+            {/* <Fade cascade damping={0.7}> */}
+                <Heading title="Happy Clients who have Registered Their Account Here"></Heading>
+                <Heading subtitle="Embark on a Global Exploration: Experience Joy in 30+ countries and Across the World"></Heading>
+                <h3 className="text-3xl text-black dark:text-white">Our Users: {users.length}</h3>
+            {/* </Fade> */}
 
             <ul className="list bg-base-100 dark:bg-gray-900 text-base-content dark:text-base-100 rounded-box shadow-md">
 
