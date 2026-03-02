@@ -29,7 +29,7 @@ const MyVisaApplications = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-    // const handleSearch = () => {
+        // const handleSearch = () => {
         const searchInput = e.target.searchInput.value;
         console.log('searchInput from handleSearch: ', searchInput);
         // setSearch(e.target.value);
@@ -158,7 +158,8 @@ const MyVisaApplications = () => {
                                 // defaultValue={search}
                                 // onChange={e=> setSearch(e.target.value)} 
                                 placeholder="Search by country name"
-                                required />
+                            // required 
+                            />
                         </label>
                         {/* <div className="validator-hint hidden">Enter valid search text</div> */}
                         {/* </div> */}
