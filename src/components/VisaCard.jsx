@@ -1,5 +1,4 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import Heading from "./Heading";
 
 // const VisaCard = ({ visa }) => {
 const VisaCard = () => {

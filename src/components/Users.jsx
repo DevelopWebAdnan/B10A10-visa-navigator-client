@@ -1,10 +1,12 @@
 import Swal from 'sweetalert2';
 import Heading from './Heading';
-import { Fade } from 'react-awesome-reveal';
 
-const Users = ({ users, setUsers }) => {
+// const Users = ({ users, setUsers }) => {
+// const Users = () => {
+const Users = ({ userData }) => {
 
-    console.log(users);
+    // console.log(users);
+    console.log(userData);
 
     const handleUpdateUser = (id) => {
         console.log(id);
@@ -37,8 +39,8 @@ const Users = ({ users, setUsers }) => {
                                 icon: "success"
                             });
 
-                            const remainingUsers = users.filter(user => user._id !== id);
-                            setUsers(remainingUsers);
+                            // const remainingUsers = users.filter(user => user._id !== id);
+                            // setUsers(remainingUsers);
                         }
                     })
             }
@@ -47,9 +49,10 @@ const Users = ({ users, setUsers }) => {
     return (
         <div>
             {/* <Fade cascade damping={0.7}> */}
-                <Heading title="Happy Clients who have Registered Their Account Here"></Heading>
-                <Heading subtitle="Embark on a Global Exploration: Experience Joy in 30+ countries and Across the World"></Heading>
-                <h3 className="text-3xl text-black dark:text-white">Our Users: {users.length}</h3>
+            <Heading title="Happy Clients who have Registered Their Account Here"></Heading>
+            <Heading subtitle="Embark on a Global Exploration: Experience Joy in 30+ countries and Across the World"></Heading>
+            {/* <h3 className="text-3xl text-black dark:text-white">Our Users: {users.length}</h3> */}
+            <h3 className="text-3xl text-black dark:text-white">Our Users: {userData.length}</h3>
             {/* </Fade> */}
 
             <ul className="list bg-base-100 dark:bg-gray-900 text-base-content dark:text-base-100 rounded-box shadow-md">
@@ -58,10 +61,12 @@ const Users = ({ users, setUsers }) => {
 
                 {
                     // users &&
-                    users.length === 0 ? (
+                    // users.length === 0 ? (
+                    userData.length === 0 ? (
                         <p>No data found</p>
                     ) : (
-                        users.map((user, idx) => <li className="list-row"
+                        // users.map((user, idx) => <li className="list-row"
+                        userData.map((user, idx) => <li className="list-row"
                             key={user._id}
                         >
                             <div className="text-4xl font-thin opacity-30 tabular-nums">{idx + 1}</div>

@@ -1,22 +1,27 @@
 import { Link } from "react-router-dom";
 import Heading from "./Heading";
-import { Fade } from "react-awesome-reveal";
 
-const LatestVisas = ({ visaData }) => {
-    console.log(visaData);
+// const LatestVisas = ({ visaData }) => {
+// console.log(visaData);
+const LatestVisas = ({ latestVisaData }) => {
+    console.log(latestVisaData);
+    // const loadedLatestVisas = useLoaderData();
+    // console.log('loadedLatestVisas: ', loadedLatestVisas);
 
     return (
         <div>
             {/* <Fade cascade damping={0.5}> */}
-                <Heading title="Latest Visas"></Heading>
-                <Heading subtitle="At least 6 latest(newly added) visa cards"></Heading>
+            <Heading title="Latest Visas"></Heading>
+            <Heading subtitle="At least 6 latest(newly added) visa cards"></Heading>
             {/* </Fade> */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
-                    visaData.length === 0 ? (
+                    // visaData.length === 0 ? (
+                    latestVisaData.length === 0 ? (
                         <p>No visa data found.</p>
                     ) : (
-                        visaData.map(visa =>
+                        // visaData.map(visa =>
+                        latestVisaData.map(visa =>
                             <div className="card bg-base-100 image-full shadow-sm h-72"
                                 key={visa._id}
                             >

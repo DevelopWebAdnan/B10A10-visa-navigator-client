@@ -1,19 +1,24 @@
-import { useLoaderData } from 'react-router-dom';
 import LatestVisas from '../components/LatestVisas';
 import Slider from '../components/Slider';
 import Users from '../components/Users';
-import { useState } from 'react';
-import MyVisaApplications from './myVisaApplications';
 import ThemeSwitcher from '../utilities/ThemeSwitcher';
 import DependableVisa from '../components/DependableVisa';
+import { useLoaderData } from 'react-router-dom';
 
 const Home = () => {
     const returnedData = useLoaderData();
+    // const userData = useLoaderData();
     console.log(returnedData);
-    const { visaData, userData, visaApplicationData } = returnedData;
-    console.log('visaData: ', visaData, 'userData: ', userData, 'visaApplicationData: ', visaApplicationData);
+    // const { visaData, userData, visaApplicationData } = returnedData;
+    // const { userData } = returnedData;
+    // const { latestVisaData, userData, visaApplicationData } = returnedData;
+    const { latestVisaData, userData } = returnedData;
+    // console.log('visaData: ', visaData, 'userData: ', userData, 'visaApplicationData: ', visaApplicationData);
+    // console.log('latestVisaData: ', latestVisaData, 'userData: ', userData, 'visaApplicationData: ', visaApplicationData);
+    console.log('latestVisaData: ', latestVisaData, 'userData: ', userData);
+    // console.log('userData: ', userData);
 
-    const [users, setUsers] = useState(userData);
+    // const [users, setUsers] = useState(userData);
     // const [visaApplications, setVisaApplications] = useState(visaApplicationData);
 
     return (
@@ -26,13 +31,17 @@ const Home = () => {
                     <Slider></Slider>
                 </section>
                 <section className='my-4 md:my-7'>
-                    <LatestVisas visaData={visaData}></LatestVisas>
+                    {/* <LatestVisas visaData={visaData}></LatestVisas> */}
+                    {/* <LatestVisas></LatestVisas> */}
+                    <LatestVisas latestVisaData={latestVisaData}></LatestVisas>
                 </section>
                 <section>
                     <DependableVisa></DependableVisa>
                 </section>
                 <section>
-                    <Users users={users} setUsers={setUsers}></Users>
+                    {/* <Users users={users} setUsers={setUsers}></Users> */}
+                    {/* <Users></Users> */}
+                    <Users userData={userData}></Users>
                 </section>
                 {/* <section>
                 <MyVisaApplications visaData={visaData} visaApplications={visaApplications} setVisaApplications={setVisaApplications}></MyVisaApplications>

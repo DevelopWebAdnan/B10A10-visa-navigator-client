@@ -1,6 +1,5 @@
 import { Link, Outlet, useLoaderData } from "react-router-dom";
 import Heading from "../components/Heading";
-import VisaCard from "../components/VisaCard";
 import noDuplicate from "../utilities/noDuplicate";
 
 const AllVisas = () => {

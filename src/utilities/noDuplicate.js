@@ -6,7 +6,7 @@ function noDuplicate(arr) {
     let onlyStudentVisas = [];
 
     for (const singleVisaObject of arr) {
-        console.log('singleVisaObject: ', singleVisaObject);
+        // console.log('singleVisaObject: ', singleVisaObject);
 
         // const keys = Object.keys(singleVisaObject);
         // const keys = singleArr.keys();
@@ -16,7 +16,7 @@ function noDuplicate(arr) {
         // console.log('keys: ', keys, 'values: ', values);
         for (const key in singleVisaObject) {
             if (key === 'selectedVisa') {
-                console.log( key, 'selectedVisaValue: ', singleVisaObject[key]);
+                // console.log( key, 'selectedVisaValue: ', singleVisaObject[key]);
                 if(uniqueSelectedVisas.includes(singleVisaObject[key]) === false) {
                     uniqueSelectedVisas.push(singleVisaObject[key]);
                     // console.log('uniqueSelectedVisa: ', uniqueSelectedVisas);
