@@ -14,7 +14,7 @@ const AllVisas = () => {
     // console.log(uniqueSelectedVisas, onlyTouristVisas, onlyOfficeVisas, onlyStudentVisas);
 
     return (
-        <div className="bg-card-229830">
+        <div className="bg-wave">
             <title>AllVisas | Visa Navigator</title>
             <Heading title="All Visas"></Heading >
 

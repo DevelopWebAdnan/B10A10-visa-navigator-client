@@ -18,7 +18,7 @@ const MyAddedVisas = () => {
     return (
         <div>
             <title>MyAddedVisas | Visa Navigator</title>
-            <h3 className="font-bold text-lg">My Added Visas: {myVisas.length}</h3>
+            <h3 className="font-bold text-sm md:text-base lg:text-lg text-gray-800">My Added Visas: {myVisas.length}</h3>
 
             {email === user?.email && <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

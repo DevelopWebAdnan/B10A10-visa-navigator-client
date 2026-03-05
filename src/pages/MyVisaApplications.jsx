@@ -37,7 +37,7 @@ const MyVisaApplications = () => {
 
             {email === user?.email && <>
 
-                <h2 className='font-black'>My total Visa Applications: {myApplications?.length}</h2>
+                <h2 className='font-medium text-gray-800 text-sm md:text-base lg:text-lg'>My total Visa Applications: {myApplications?.length}</h2>
 
                 <form onSubmit={handleSearch}>
                     <div className="join">

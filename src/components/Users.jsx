@@ -8,7 +8,7 @@ const Users = ({ userData }) => {
         <div>
             <Heading title="Happy Clients who have Registered Their Account Here"></Heading>
             <Heading subtitle="Embark on a Global Exploration: Experience Joy in 30+ countries and Across the World"></Heading>
-            <h3 className="text-xs md:text-sm lg:text-lg text-stone-800 dark:text-white">Our Users: {userData.length}</h3>
+            <h3 className="text-xs md:text-sm lg:text-lg text-stone-800 dark:text-stone-200">Our Users: {userData.length}</h3>
             
             <ul className="list bg-base-100 dark:bg-gray-800 text-base-content dark:text-base-100 rounded-box shadow-md">
 

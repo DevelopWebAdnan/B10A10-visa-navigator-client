@@ -14,4 +14,4 @@ Live site URL: [Visa Navigator](https://b10a10-visa-navigator-client.web.app)
 
 - For all the CRUD operations, relevant sweet alert is shown with a meaningful message.
 
-- Dark/light theme, Search functionalities: Implemented dark/light theme for the home page, as well as search functionality on the "My visa applications" page based on the country name through an input field and a search button.
+- Dark/light theme, Search functionalities: Implemented dark/light theme toggle for the home page, as well as search functionality on the "My visa applications" page based on the country name through an input field and a search button.

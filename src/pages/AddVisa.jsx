@@ -74,10 +74,10 @@ const AddVisa = () => {
     return (
         <div>
             <title>AddVisa | Visa Navigator</title>
-            <div className="hero bg-base-200 min-h-screen">
+            <div className="hero bg-card-229830 min-h-screen">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-2xl font-bold">Add Visa now!</h1>
+                        <h1 className="text-2xl font-bold text-amber-200">Add Visa now!</h1>
                     </div>
                     <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
                         <div className="card-body">

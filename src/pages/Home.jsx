@@ -17,7 +17,7 @@ const Home = () => {
             <div className='flex justify-center items-center'>
                 <ThemeSwitcher></ThemeSwitcher>
             </div>
-            <div className='bg-white dark:bg-gray-700'>
+            <div className='bg-teal-100 dark:bg-gray-700'>
                 <section className='h-[600px]'>
                     <Slider></Slider>
                 </section>

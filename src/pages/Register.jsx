@@ -92,7 +92,7 @@ const Register = () => {
     return (
         <div>
             <title>Register | Visa Navigator</title>
-            <div className="hero bg-base-200 bg-undraw_enter-password min-h-screen">
+            <div className="hero bg-undraw_enter-password min-h-screen">
                 <div className='hero-content flex-col'>
                     <h2 className='text-2xl font-bold'>Register</h2>
                     <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">

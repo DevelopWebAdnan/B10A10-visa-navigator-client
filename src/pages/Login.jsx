@@ -36,7 +36,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     // .then(data => {
-                    //     console.log(data);
+                        // console.log(data);
                     // })
                 event.target.reset();
                 // console.log('email: ', email, 'result?.user?.email: ', result?.user?.email);

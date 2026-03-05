@@ -6,7 +6,6 @@
 @plugin "daisyui";
 
 @theme {
-  /* --font-roboto: "Roboto", sans-serif;  */
   --font-openSans: "Open Sans", sans-serif;
   --font-playfairDisplay: "Playfair Display", serif;
 }
@@ -25,13 +24,6 @@
   background-repeat: no-repeat;
 }
 
-.bg-iphone {
-  background-image: url('./assets/iphone-624709.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .bg-coolbackgrounds {
   background-image: url('./assets/coolbackgrounds.png');
   background-position: center;
@@ -48,6 +40,13 @@
 
 .bg-card-229830 {
   background-image: url('./assets/card-229830.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-wave {
+  background-image: url('./assets/wave-haikei.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

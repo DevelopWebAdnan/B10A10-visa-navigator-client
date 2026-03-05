@@ -1,5 +1,4 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import Heading from "./Heading";
 
 const VisaCard = () => {
 
@@ -11,9 +10,8 @@ const VisaCard = () => {
 
     return (
         <div>
-            <Heading subtitle={visaType}></Heading>
+            <h3 className="font-bold text-sm md:text-base lg:text-lg text-gray-200 text-center mb-4 md:mb-5 lg:mb-6">{visaType}</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-
                 {
                     loadedVisaCards.map(loadedVisaCard =>
                         <div key={loadedVisaCard._id} className="card bg-base-100 shadow-sm">

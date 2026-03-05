@@ -48,7 +48,7 @@ const VisaDetails = () => {
             })
     }
 
-    const loggedInUserName = user.displayName;
+    const loggedInUserName = user?.displayName;
 
     const splittedUser = loggedInUserName.split(' ');
 
