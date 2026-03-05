@@ -11,12 +11,14 @@ const Navbar = () => {
     const handleSignOut = () => {
         signOutUser()
             .then(() => {
-                console.log('User sign out is successful.')
+                // console.log('User sign out is successful.')
             })
-            .catch(error => { console.log('ERROR', error.message) })
+        // .catch(error => { 
+        //     console.log('ERROR', error.message) 
+        // })
     }
 
-    console.log(user);
+    // console.log(user);
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -24,14 +26,8 @@ const Navbar = () => {
         {
             user && <>
                 <li><NavLink to="/addVisa">Add Visa</NavLink></li>
-                {/* <li><NavLink to={`/addedVisas/${user.email}`}>My Added Visas</NavLink></li> */}
-                {/* <li><NavLink to={`/visas/${user.email}`}>My Added Visas</NavLink></li> */}
-                {/* <li><NavLink to="/myAddedVisas">My Added Visas</NavLink></li> */}
-                {/* <li><NavLink to="/myVisas">My Added Visas</NavLink></li> */}
                 <li><NavLink to={`myVisas/${user.email}`}>My Added Visas</NavLink></li>
-                {/* <li><NavLink to={`/visaApplications/${user.email}`}>My Visa Applications</NavLink></li> */}
                 <li><NavLink to={`/myVisaApplications/${user.email}`}>My Visa Applications</NavLink></li>
-                {/* <li><NavLink to='/myVisaApplications'>My Visa Applications</NavLink></li> */}
             </>
         }
     </>
@@ -48,7 +44,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a href="/" className="text-xl md:text-2xl lg:text-3xl">VISA NAVIGATOR</a>
+                <a href="/" className="text-xl md:text-2xl lg:text-3xl text-[#00CC99] font-extrabold font-playfairDisplay">VISA NAVIGATOR</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -59,28 +55,19 @@ const Navbar = () => {
                 {
                     user ?
                         <div className="flex gap-2 items-center justify-center">
-                            {/* <a
-                                data-tooltip-id="my-tooltip"
-                                 data-tooltip-content={user.displayName}
-                                 data-tooltip-place="top"
-                            >
-                                Tooltip
-                            </a> */}
                             <img
                                 src={user.photoURL}
                                 className="w-11 md:w-12 lg:w-14 rounded-4xl md:rounded-3xl lg:rounded-2xl"
                                 alt="real user photo"
-                                // title={user.displayName}
                                 data-tooltip-id="my-tooltip"
-                                 data-tooltip-content={user.displayName}
-                                 data-tooltip-place="top" />
-                            {/* </a> */}
-                            <a onClick={handleSignOut} className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Logout</a>
+                                data-tooltip-content={user.displayName}
+                                data-tooltip-place="top" />
+                            <a onClick={handleSignOut} className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl text-white bg-[#00CC99]">Logout</a>
                         </div>
                         :
                         <>
                             <img src={defaultUser} alt="default user photo" />
-                            <Link to="login"><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Login</button></Link>
+                            <Link to="login"><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl text-base-100 bg-[#00CC99]">Login</button></Link>
                             <Link to="register"><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Register</button></Link>
                         </>
                 }

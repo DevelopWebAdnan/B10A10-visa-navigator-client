@@ -1,5 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @plugin "daisyui";
+
+@theme {
+  /* --font-roboto: "Roboto", sans-serif;  */
+  --font-openSans: "Open Sans", sans-serif;
+  --font-playfairDisplay: "Playfair Display", serif;
+}
+
+.bg-undraw_enter-password {
+  background-image: url('./assets/undraw_enter-password.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bg-undraw_secure-password {
+  background-image: url('./assets/undraw_secure-password.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bg-iphone {
+  background-image: url('./assets/iphone-624709.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-coolbackgrounds {
+  background-image: url('./assets/coolbackgrounds.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-obi {
+  background-image: url('./assets/pexels-obi-onyeador.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-card-229830 {
+  background-image: url('./assets/card-229830.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

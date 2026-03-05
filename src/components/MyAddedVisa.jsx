@@ -3,19 +3,17 @@ import { useRef } from "react";
 
 const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
 
-    const { _id, image, countryName, selectedVisa, time, vPassport, vApplicationForm, rPsPhoto, sentence, description, age, fee, validity, applicationMethod, email } = myVisa;
-    console.log('myVisa: ', _id, image, countryName, selectedVisa, time, 'vPassport: ', vPassport, 'vApplicationForm: ', vApplicationForm, 'rPsPhoto: ', rPsPhoto, 'sentence: ', sentence, description, age, fee, 'validity: ', validity, 'applicationMethod: ', applicationMethod, 'email: ', email);
+    const { _id, image, countryName, selectedVisa, time, vPassport, vApplicationForm, rPsPhoto, description, age, fee, validity, applicationMethod } = myVisa;
+    // console.log('myVisa: ', _id, image, countryName, selectedVisa, time, 'vPassport: ', vPassport, 'vApplicationForm: ', vApplicationForm, 'rPsPhoto: ', rPsPhoto, 'sentence: ', sentence, description, age, fee, 'validity: ', validity, 'applicationMethod: ', applicationMethod, 'email: ', email);
 
     const modalRef = useRef(null);
 
     const handleShowModalClick = () => {
-        // console.log(id);
         if (modalRef.current) {
             modalRef.current.showModal();
 
-            // document.getElementById('my_update_modal').showModal();
         } else {
-            console.warn('Modal reference is not available.');
+            // console.warn('Modal reference is not available.');
         }
     };
 
@@ -28,27 +26,6 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
         const vPassport = e.target.vPassport.checked;
         const vApplicationForm = e.target.vApplicationForm.checked;
         const rPsPhoto = e.target.rPsPhoto.checked;
-        // const documents = [vPassport, vApplicationForm, rPsPhoto];
-
-        // const documents = [
-        //     {'Valid passport': vPassport},
-        //      {'Valid Application Form': vApplicationForm}, 
-        //     {'Recent passport-sized photograph': rPsPhoto}
-        // ];
-        // const requiredDocuments = for(const document of documents) {
-
-        // }
-        // <ul>
-        // const requiredDocuments = sentence.map(document => {
-            //    if(!document) {
-            // <li>{document}</li>
-            //    }
-            //    else {
-            //    <li>{document}</li>
-            //    }
-        // })
-        // </ul>
-
         const documentsAvailability = [
             { "Valid passport": vPassport },
             { "Valid application form": vApplicationForm },
@@ -57,44 +34,34 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
 
         let sentence = [];
         for (const requiredDocument of documentsAvailability) {
-            console.log(requiredDocument);
+            // console.log(requiredDocument);
             for (const key in requiredDocument) {
-                console.log(key);
-                // const keys = Object.keys(requiredDocument)
-                // console.log(keys);
+                // console.log(key);
                 if (requiredDocument[key]) {
-                    console.log(key + ' is available. ');
-                    // sentence = key + ' is available';
+                    // console.log(key + ' is available. ');
                     sentence.push(key + ': available. ');
                 }
                 else {
-                    console.log(key + ' is not available. ');
-                    // sentence = key + ' is not available';
+                    // console.log(key + ' is not available. ');
                     sentence.push(key + ': missing?! ');
                 }
-                // console.log('sentence: ', sentence);
             }
-            // for (const value in requiredDocument) {
-            //     console.log(value);
-            // }
         }
-        console.log('So, updated sentence: ', sentence);
+        // console.log('So, updated sentence: ', sentence);
 
         const description = e.target.description.value;
         const age = e.target.age.value;
         const fee = e.target.fee.value;
         const validity = e.target.validity.value;
         const applicationMethod = e.target.applicationMethod.value;
-        // const myRadio = e.target.myRadio.value;
 
-        const updatedVisa = { image, countryName, selectedVisa, time, vPassport, vApplicationForm, rPsPhoto, sentence, description, age, fee, validity, applicationMethod };
+        const updatedVisa = {_id, image, countryName, selectedVisa, time, vPassport, vApplicationForm, rPsPhoto, sentence, description, age, fee, validity, applicationMethod };
 
-        console.log('updatedVisa: ', updatedVisa);
-        console.log('_id: ', _id, 'image:', image, 'countryName:', countryName, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
+        // console.log('updatedVisa: ', updatedVisa);
+        // console.log('_id: ', _id, 'image:', image, 'countryName:', countryName, 'selectedVisa:', selectedVisa, 'time:', time, 'visaPassport:', vPassport, 'vApplicationForm:', vApplicationForm, 'recentPsPhoto:', rPsPhoto, 'description:', description, 'age:', age, 'fee:', fee, 'validity:', validity, 'applicationMethod:', applicationMethod);
 
         // Send data to the server
-        // fetch(`http://localhost:5000/addedVisas/${_id}`, {
-        fetch(`http://localhost:5000/visas/${_id}`, {
+        fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${_id}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json"
@@ -103,7 +70,7 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Success!',
@@ -111,25 +78,19 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
-                    // const updatedVisaCards = visas.map(updatedVisaCard => updatedVisaCard._id == updatedVisa._id);
-                    // console.log(updatedVisaCards);
-                    console.log('myVisa: ', myVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa:', updatedVisa, 'updatedVisa._id: ', updatedVisa._id, 'myVisas: ', myVisas);
-                    if (myVisa._id == updatedVisa._id) {
-                        console.log('myVisa._id == updatedVisa._id', 'myVisa: ', myVisa, 'updatedVisa: ', updatedVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa._id: ', updatedVisa._id);
-                    }
-                    // const updatedVisaId = visas.find(visa => visa._id == updatedVisa._id);
-                    // console.log(updatedVisaId);
+                    // console.log('myVisa: ', myVisa, 'myVisa._id: ', myVisa._id, 'updatedVisa:', updatedVisa, 'updatedVisa._id: ', updatedVisa._id, 'myVisas: ', myVisas);
                     const remaining = myVisas.filter(myVis => myVis._id !== _id);
-                    console.log('remaining after updating: ', remaining);
+                    // console.log('remaining after updating: ', remaining);
+
                     const updatedVisaAndRemaining = [...remaining, updatedVisa];
-                    console.log(updatedVisaAndRemaining);
+                    // console.log(updatedVisaAndRemaining);
                     setMyVisas(updatedVisaAndRemaining);
                 }
             })
     }
 
     const handleDelete = (_id) => {
-        console.log(_id);
+        // console.log(_id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -141,13 +102,12 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                // fetch(`http://localhost:5000/addedVisas/${_id}`, {
-                fetch(`http://localhost:5000/visas/${_id}`, {
+                fetch(`https://b10-a10-visa-navigator-server-ten.vercel.app/visas/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                         if (data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
@@ -177,36 +137,13 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                     {countryName}
                     <div className="badge badge-secondary">{selectedVisa}</div>
                 </h2>
-                <p>Time: {time}</p>
-                {/* <p>Documents: {sentence}</p> */}
-                Documents:
-                <ol>
-                    {
-
-                        // sentence.forEach(document => {
-                        //    if(!document) {
-                        <li>{sentence}</li>
-                        // sentence3.map(singleSentence => <li className='text-red-500'>{singleSentence}</li>)
-                        //    }
-                        //    else {
-                        //    <li>{document}</li>
-                        //    }
-                        // })
-                    }
-                </ol>
-                <p>Description: {description}</p>
-                <p>Age: {age}</p>
+                <p>Processing_time: {time}</p>
+                <p>Fee: {fee}</p>
+                <p>Validity: {validity}</p>
+                <p>Application_method: {applicationMethod}</p>
                 <div className="card-actions justify-end">
-                    {/* <Link to={`updateVisa/${_id}`}> */}
-                    {/* <Link to={`myAddedVisa/${_id}`}> */}
-                    {/* <button className="btn btn-outline">Update</button> */}
-
-                    {/* Open the modal using document.getElementById('ID').showModal() method */}
-                    {/* <button className="btn" onClick={() => document.getElementById('my_update_modal').showModal()}>Update</button> */}
                     <button className="btn" onClick={handleShowModalClick}>Update</button>
-                    {/* </Link> */}
-                    {/* <UpdateVisa></UpdateVisa> */}
-                    {/* <dialog id="my_update_modal" className="modal modal-bottom sm:modal-middle"> */}
+
                     <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box">
                             <h3 className="font-bold text-lg">Hello!</h3>
@@ -309,20 +246,7 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                                                     </label>
                                                 </fieldset>
 
-                                                {/* <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
-                                                    <legend className="fieldset-legend">Application_method:</legend>
-                                                    <label className="label">
-                                                        <input type="radio" name="myRadio" value="option1" className="radio" /> Option 1
-                                                    </label>
-                                                    <label className="label">
-                                                        <input type="radio" name="myRadio" value="option2" className="radio" defaultChecked={true} /> Option 2
-                                                    </label>
-                                                    <label><input type="radio" name="myRadio" value="option3" />Option 3</label>
-                                                </fieldset> */}
-
-                                                {/* <div><a className="link link-hover">Forgot password?</a></div> */}
                                                 <button type="submit" className="btn btn-neutral mt-4">Update Visa</button>
-                                                {/* <button className="btn btn-active btn-accent">Accent</button> */}
 
                                             </form>
                                         </div>
@@ -332,9 +256,7 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                             <div className="modal-action">
                                 <form method="dialog">
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn">Close</button>
-                                    {/* <button type="submit" className="btn btn-neutral mt-4">Update Visa</button> */}
-                                    {/* <button className="btn btn-active btn-accent">Accent</button> */}
+                                    <button className="btn text-base-100 bg-[#00CC99]">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -343,7 +265,6 @@ const MyAddedVisa = ({ myVisa, myVisas, setMyVisas }) => {
                     <button onClick={() => handleDelete(_id)} className="btn btn-outline btn-error">Delete</button>
                 </div>
             </div>
-            {/* <UpdateVisa></UpdateVisa> */}
         </div>
     );
 };

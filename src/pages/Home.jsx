@@ -7,45 +7,29 @@ import { useLoaderData } from 'react-router-dom';
 
 const Home = () => {
     const returnedData = useLoaderData();
-    // const userData = useLoaderData();
-    console.log(returnedData);
-    // const { visaData, userData, visaApplicationData } = returnedData;
-    // const { userData } = returnedData;
-    // const { latestVisaData, userData, visaApplicationData } = returnedData;
+    // console.log(returnedData);
     const { latestVisaData, userData } = returnedData;
-    // console.log('visaData: ', visaData, 'userData: ', userData, 'visaApplicationData: ', visaApplicationData);
-    // console.log('latestVisaData: ', latestVisaData, 'userData: ', userData, 'visaApplicationData: ', visaApplicationData);
-    console.log('latestVisaData: ', latestVisaData, 'userData: ', userData);
-    // console.log('userData: ', userData);
-
-    // const [users, setUsers] = useState(userData);
-    // const [visaApplications, setVisaApplications] = useState(visaApplicationData);
+    // console.log('latestVisaData: ', latestVisaData, 'userData: ', userData);
 
     return (
         <div>
+            <title>Home | Visa Navigator</title>
             <div className='flex justify-center items-center'>
                 <ThemeSwitcher></ThemeSwitcher>
             </div>
-            <div className='bg-white dark:bg-gray-800'>
+            <div className='bg-white dark:bg-gray-700'>
                 <section className='h-[600px]'>
                     <Slider></Slider>
                 </section>
-                <section className='my-4 md:my-7'>
-                    {/* <LatestVisas visaData={visaData}></LatestVisas> */}
-                    {/* <LatestVisas></LatestVisas> */}
+                <section className='my-4 md:my-7 lg:my-12'>
                     <LatestVisas latestVisaData={latestVisaData}></LatestVisas>
                 </section>
-                <section>
+                <section className='my-4 md:my-7 lg:my-12'>
                     <DependableVisa></DependableVisa>
                 </section>
                 <section>
-                    {/* <Users users={users} setUsers={setUsers}></Users> */}
-                    {/* <Users></Users> */}
                     <Users userData={userData}></Users>
                 </section>
-                {/* <section>
-                <MyVisaApplications visaData={visaData} visaApplications={visaApplications} setVisaApplications={setVisaApplications}></MyVisaApplications>
-            </section> */}
             </div>
         </div>
     );
